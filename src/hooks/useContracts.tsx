@@ -70,11 +70,11 @@ const depositMR = async (balance: string, addressInvitor: string) => {
     });
 };
 
-const withdrawMR = async (balance: string) => {
+const withDrawMR = async (balance: string) => {
   let SmartMrInstance = getSmartMr();
 
   SmartMrInstance.methods
-    .withdrawMR(balance)
+    .withDrawMR(balance)
     .send({
       from: account,
     })
@@ -148,7 +148,7 @@ const withdrawMR = async (balance: string) => {
   return {
     approveToken,
     depositMR,
-    withdrawMR,
+    withDrawMR,
     approveTokenMR,
     checkAllowanceMR
   };

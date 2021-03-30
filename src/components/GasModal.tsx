@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 const GasModal: React.FunctionComponent = () => {
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceMR, approveTokenMR, depositMR, withdrawMR } = useContracts();
+  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR } = useContracts();
 
   const [open, setOpen] = useState(false);
   const [checkingAllowance, setCheckingAllowance] = useState(true);
@@ -57,7 +57,7 @@ const GasModal: React.FunctionComponent = () => {
 
     <div
       className="approve-token-button"
-      onClick={() => withdrawMR('1000000000000000000')}
+      onClick={() => withDrawMR('1000000000000000000')}
     >
       Withdraw MR
     </div>
