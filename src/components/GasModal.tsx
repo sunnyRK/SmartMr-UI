@@ -146,7 +146,7 @@ const GasModal: React.FunctionComponent = () => {
             ) : (
               <div className="approve-token">
                 <div className="note">
-                  Note: Give approval to Biconomy ERC-20 Forwarder Contract, so
+                  Note: Give approval to Smart MR ERC-20 Forwarder Contract, so
                   it can deduct fee in selected token.
                 </div>
                 <ApproveButton tokenName={selectedToken} />

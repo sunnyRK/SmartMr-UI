@@ -6,7 +6,7 @@ const InfoHeader: React.FunctionComponent = () => {
 
   return (
     <div className="header">
-      <div className="title">Biconomy Gas Estimator</div>
+      <div className="title">Smart MR</div>
       <div className="wallet-address">
         {account ? `(${network}) ${account}` : "connect wallet to continue"}
       </div>
