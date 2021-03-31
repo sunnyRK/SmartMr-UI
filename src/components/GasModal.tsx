@@ -3,7 +3,7 @@ import "react-responsive-modal/styles.css";
 
 import { Modal } from "react-responsive-modal";
 
-import CustomButton from "./CustomButton";
+// import CustomButton from "./CustomButton";
 import SmallButtons from "./SmallButtons";
 import useContracts from "../hooks/useContracts";
 import ApproveButton from "./ApproveButton";

@@ -1,4 +1,4 @@
-import Icon from "@atlantum/feather-react-ts";
+// import Icon from "@atlantum/feather-react-ts";
 import React from "react";
 
 // hooks and services
@@ -32,9 +32,9 @@ const CustomButton: React.FunctionComponent<CustomButtonProps> = ({
         "custom-button bg-" + color + " " + `${disabled ? "disabled" : ""}`
       }
     >
-      <div className={"icon bg-dark-" + color}>
-        <Icon name={icon} strokeWidth={1.5} size={20} color="white" />
-      </div>
+      {/* <div className={"icon bg-dark-" + color}> */}
+        {/* <Icon name={icon} strokeWidth={1.5} size={20} color="white" /> */}
+      {/* </div> */}
       <div className="text">
         <div className="title">{title}</div>
         <div className="description">{description}</div>
