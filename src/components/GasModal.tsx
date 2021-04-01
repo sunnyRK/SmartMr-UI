@@ -12,11 +12,13 @@ import Swal from "sweetalert2";
 
 const GasModal: React.FunctionComponent = () => {
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR } = useContracts();
+  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward } = useContracts();
 
   const [open, setOpen] = useState(false);
   const [checkingAllowance, setCheckingAllowance] = useState(true);
   const [isApproved, setIsApproved] = useState(false);
+  const [claimableReward, setReward] = useState('0');
+
 
   const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
     "USDC"
@@ -38,9 +40,39 @@ const GasModal: React.FunctionComponent = () => {
     }
   }, [selectedToken, open]);
 
+  // useEffect(() => {
+  //   const process = async () => {
+  //     setCheckingAllowance(true);
+  //     const reward = await checkReward();
+  //     setReward(reward);
+  //   };
+  //   process()
+  // }, [])
+
+  const checkRewardOfClaim = async () => {
+    try {
+      const reward = await checkReward();
+      setReward(reward);
+    } catch (error) {
+      console.log('checkRewardOfClaim-error', error)
+    }
+  }
+
   return (
     <>
 
+    <div className="checking-allowance">
+      Claimable Reward in wei is: {claimableReward} 
+    </div>
+
+
+    <div
+      className="approve-token-button"
+      onClick={() => checkRewardOfClaim()}
+    >
+      Clieck here to Check Claimable Reward
+    </div>
+    
     <div
       className="approve-token-button"
       onClick={() => approveTokenMR()}
@@ -61,6 +93,7 @@ const GasModal: React.FunctionComponent = () => {
     >
       Withdraw MR
     </div>
+
     
       {/* <CustomButton
         color="green"

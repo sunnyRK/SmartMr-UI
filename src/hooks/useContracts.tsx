@@ -145,12 +145,26 @@ const withDrawMR = async (balance: string) => {
     }
   };
 
+  const checkReward = async () => {
+    let SmartMrInstance = getSmartMr();
+    let rewards = await SmartMrInstance.methods
+      .viewReward(account)
+      .call();
+    console.log('rewards: ', rewards)
+    let reward: any = 0
+    for (let i=0;i<3;i++) {
+      reward = reward + parseInt(rewards[i])
+    }
+    return reward
+  };
+
   return {
     approveToken,
     depositMR,
     withDrawMR,
     approveTokenMR,
-    checkAllowanceMR
+    checkAllowanceMR,
+    checkReward
   };
 };
 
