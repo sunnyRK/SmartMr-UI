@@ -12,12 +12,14 @@ import Swal from "sweetalert2";
 
 const GasModal: React.FunctionComponent = () => {
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward } = useContracts();
+  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS } = useContracts();
 
   const [open, setOpen] = useState(false);
   const [checkingAllowance, setCheckingAllowance] = useState(true);
   const [isApproved, setIsApproved] = useState(false);
   const [claimableReward, setReward] = useState('0');
+  const [msBalance, setMSBalance] = useState('0');
+  const [mrBalance, setMRBalance] = useState('0');
 
 
   const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
@@ -52,7 +54,11 @@ const GasModal: React.FunctionComponent = () => {
   const checkRewardOfClaim = async () => {
     try {
       const reward = await checkReward();
+      const mrBal = await checkBalanceMR();
+      const msBal = await checkBalanceMS();
       setReward(reward);
+      setMRBalance(mrBal)
+      setMSBalance(msBal)
     } catch (error) {
       console.log('checkRewardOfClaim-error', error)
     }
@@ -62,9 +68,16 @@ const GasModal: React.FunctionComponent = () => {
     <>
 
     <div className="checking-allowance">
-      Claimable Reward in wei is: {claimableReward} 
+      Claimable MS Reward: {parseFloat(claimableReward)/1e18} 
     </div>
 
+    <div className="checking-allowance">
+      Your current MS Balance: {parseFloat(msBalance)/1e18} 
+    </div>
+
+    <div className="checking-allowance">
+      Your current MR Balance: {parseFloat(mrBalance)/1e18} 
+    </div>
 
     <div
       className="approve-token-button"
@@ -72,7 +85,7 @@ const GasModal: React.FunctionComponent = () => {
     >
       Clieck here to Check Claimable Reward
     </div>
-    
+
     <div
       className="approve-token-button"
       onClick={() => approveTokenMR()}

@@ -158,13 +158,33 @@ const withDrawMR = async (balance: string) => {
     return reward
   };
 
+  const checkBalanceMS = async () => {
+    let MSInstance = getMSToken();
+    let msBalance = await MSInstance.methods
+      .balanceOf(account)
+      .call();
+    console.log('msBalance: ', msBalance)
+    return msBalance
+  };
+
+  const checkBalanceMR = async () => {
+    let MRInstance = geMRToken();
+    let mrBalance = await MRInstance.methods
+      .balanceOf(account)
+      .call();
+    console.log('msBalance: ', mrBalance)
+    return mrBalance
+  };
+
   return {
     approveToken,
     depositMR,
     withDrawMR,
     approveTokenMR,
     checkAllowanceMR,
-    checkReward
+    checkReward,
+    checkBalanceMS,
+    checkBalanceMR
   };
 };
 
