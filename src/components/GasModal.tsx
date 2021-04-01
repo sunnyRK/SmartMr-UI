@@ -83,7 +83,7 @@ const GasModal: React.FunctionComponent = () => {
       className="approve-token-button"
       onClick={() => checkRewardOfClaim()}
     >
-      Clieck here to Check Claimable Reward
+      Clieck here to Check Claimable Reward and Balance
     </div>
 
     <div
