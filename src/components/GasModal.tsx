@@ -15,12 +15,14 @@ const GasModal: React.FunctionComponent = () => {
   const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS } = useContracts();
 
   const [open, setOpen] = useState(false);
-  const [checkingAllowance, setCheckingAllowance] = useState(true);
-  const [isApproved, setIsApproved] = useState(false);
+  // const [checkingAllowance, setCheckingAllowance] = useState(true);
+  // const [isApproved, setIsApproved] = useState(false);
   const [claimableReward, setReward] = useState('0');
   const [msBalance, setMSBalance] = useState('0');
   const [mrBalance, setMRBalance] = useState('0');
-
+  const [mrDepositAmount, setDepositAmount] = useState('0');
+  const [mrWithdrawAmount, setWithdrawAmount] = useState('0');
+  const [invitorAddress, setInvitorAddress] = useState('');
 
   const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
     "USDC"
@@ -29,18 +31,18 @@ const GasModal: React.FunctionComponent = () => {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
-  useEffect(() => {
-    const checkApproved = async () => {
-      setCheckingAllowance(true);
-      const isApproved = await checkAllowanceMR();
-      setIsApproved(isApproved);
-      setCheckingAllowance(false);
-    };
+  // useEffect(() => {
+  //   const checkApproved = async () => {
+      // setCheckingAllowance(true);
+      // const isApproved = await checkAllowanceMR();
+      // setIsApproved(isApproved);
+      // setCheckingAllowance(false);
+    // };
 
-    if (open) {
-      checkApproved();
-    }
-  }, [selectedToken, open]);
+  //   if (open) {
+  //     checkApproved();
+  //   }
+  // }, [selectedToken, open]);
 
   // useEffect(() => {
   //   const process = async () => {
@@ -63,6 +65,19 @@ const GasModal: React.FunctionComponent = () => {
       console.log('checkRewardOfClaim-error', error)
     }
   }
+
+  const handleDepositAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDepositAmount(event.target.value);
+  };
+
+  const handleWithdrawAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWithdrawAmount(event.target.value);
+  };
+
+  const handleInvitorAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInvitorAddress(event.target.value);
+  };
+
 
   return (
     <>
@@ -92,16 +107,21 @@ const GasModal: React.FunctionComponent = () => {
       Approve MR
     </div>
 
+    <input style={{height: '40px'}} onChange={handleDepositAmount} placeholder="Add Deposit MR amount"></input>
+    <input style={{height: '40px'}} onChange={handleInvitorAddress} placeholder="Invitor Address"></input>
+
     <div
       className="approve-token-button"
-      onClick={() => depositMR('1000000000000000000', '0x2031d045f56e679925bFdCDa3416448Cc9B1b688')}
+      onClick={() => depositMR(mrDepositAmount, invitorAddress)}
     >
       Deposit MR
     </div>
 
+    <input style={{height: '40px'}} onChange={handleWithdrawAmount} placeholder="Add Withdraw MR amount"></input>
+
     <div
       className="approve-token-button"
-      onClick={() => withDrawMR('1000000000000000000')}
+      onClick={() => withDrawMR(mrWithdrawAmount)}
     >
       Withdraw MR
     </div>
