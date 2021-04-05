@@ -54,6 +54,7 @@ const getMSToken = () => {
 const depositMR = async (balance: string, addressInvitor: string) => {
   let SmartMrInstance = getSmartMr();
 
+
   SmartMrInstance.methods
     .depositMR(balance, addressInvitor)
     .send({
@@ -96,7 +97,7 @@ const withDrawMR = async (balance: string) => {
     let TokenContractInstance = geMRToken();
 
     TokenContractInstance.methods
-      .approve(MR_KOVAN.address, maxValue)
+      .approve(smartMr.address, maxValue)
       .send({
         from: account,
       })
@@ -118,7 +119,7 @@ const withDrawMR = async (balance: string) => {
     let TokenContractInstance = geMRToken();
 
     TokenContractInstance.methods
-      .approve(MR_KOVAN.address, maxValue)
+      .approve(smartMr.address, maxValue)
       .send({
         from: account,
       })
@@ -136,7 +137,7 @@ const withDrawMR = async (balance: string) => {
   const checkAllowanceMR = async () => {
     let TokenContractInstance = geMRToken();
     let allowance = await TokenContractInstance.methods
-      .allowance(account, MR_KOVAN.address)
+      .allowance(account, smartMr.address)
       .call();
     if (allowance > 0) {
       return true;

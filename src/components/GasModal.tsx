@@ -66,7 +66,6 @@ const GasModal: React.FunctionComponent = () => {
 
   return (
     <>
-
     <div className="checking-allowance">
       Claimable MS Reward: {parseFloat(claimableReward)/1e18} 
     </div>
