@@ -73,10 +73,16 @@ const buyMR = async (balance: string) => {
       alert("Please Connect Metamask")
       return
     }
+
+    if(new BigNumber(balance).toNumber() == 0) {
+      alert("Please add Buy amount")
+      return
+    }
+
     const mrBalance = await checkBalanceMROfAny(buy_mr_contract.address);
-    
-    if(new BigNumber(mrBalance) >= new BigNumber(balance).multipliedBy(1e18)) {
-      if(new BigNumber(balance).multipliedBy(1e6).modulo(1e6).toString() == '0') {
+
+    if(new BigNumber(mrBalance).gte(new BigNumber(balance).multipliedBy(1e18))) {
+      if(new BigNumber(balance).multipliedBy(1e6).modulo(1e6).eq(0)) {
         buyMrCntract.methods
         .buyMR(new BigNumber(balance).multipliedBy(1e6)) // usdt 1e6
         .send({
@@ -110,7 +116,6 @@ const depositMR = async (balance: string, addressInvitor: string) => {
       alert("Please Connect Metamask")
       return
     }
-    console.log(parseFloat(balance)*1e18, addressInvitor, SmartMrInstance)
     SmartMrInstance.methods
       .depositMR(new BigNumber(balance).multipliedBy(1e18), addressInvitor)
       .send({
@@ -273,7 +278,6 @@ const withDrawMR = async (balance: string) => {
       let msBalance = await MSInstance.methods
         .balanceOf(account)
         .call();
-      console.log('msBalance: ', msBalance)
       return msBalance 
     } catch (error) {
       
@@ -290,7 +294,6 @@ const withDrawMR = async (balance: string) => {
       let mrBalance = await MRInstance.methods
         .balanceOf(account)
         .call();
-      console.log('msBalance: ', mrBalance)
       return mrBalance
     } catch (error) {
       
@@ -307,7 +310,6 @@ const withDrawMR = async (balance: string) => {
       let mrBalance = await MRInstance.methods
         .balanceOf(address)
         .call();
-      console.log('msBalance: ', mrBalance)
       return mrBalance
     } catch (error) {
       
