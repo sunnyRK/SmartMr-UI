@@ -18,11 +18,11 @@ const ApproveButton: React.FunctionComponent<ApproveButtonProps> = ({
   return (
     <div
       className="approve-token-button"
-      onClick={() => approveToken(tokenName)}
+      onClick={() => approveToken()}
     >
       Approve {tokenName}
     </div>
   );
 };
 
-export default ApproveButton;
+export default ApproveButton;  

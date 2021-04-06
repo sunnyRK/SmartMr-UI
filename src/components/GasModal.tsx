@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 
 const GasModal: React.FunctionComponent = () => {
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS } = useContracts();
+  const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS, approveToken, buyMR } = useContracts();
 
   const [open, setOpen] = useState(false);
   // const [checkingAllowance, setCheckingAllowance] = useState(true);
@@ -22,6 +22,7 @@ const GasModal: React.FunctionComponent = () => {
   const [mrBalance, setMRBalance] = useState('0');
   const [mrDepositAmount, setDepositAmount] = useState('0');
   const [mrWithdrawAmount, setWithdrawAmount] = useState('0');
+  const [mrBuyAmount, setBuyMRAmount] = useState('0');
   const [invitorAddress, setInvitorAddress] = useState('');
 
   const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
@@ -78,6 +79,10 @@ const GasModal: React.FunctionComponent = () => {
     setInvitorAddress(event.target.value);
   };
 
+  const handleBuyMRAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setBuyMRAmount(event.target.value);
+  };
+
 
   return (
     <>
@@ -126,6 +131,22 @@ const GasModal: React.FunctionComponent = () => {
       Withdraw MR
     </div>
 
+
+    <div
+      className="approve-token-button"
+      onClick={() => approveToken()}
+    >
+      Approve USDT
+    </div>
+
+    <input style={{height: '40px'}} onChange={handleBuyMRAmount} placeholder="Add Buy MR amount"></input>
+
+    <div
+      className="approve-token-button"
+      onClick={() => buyMR(mrBuyAmount)}
+    >
+      Buy MR
+    </div>
     
       {/* <CustomButton
         color="green"

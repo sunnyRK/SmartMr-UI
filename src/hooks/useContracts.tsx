@@ -1,6 +1,8 @@
 import smartMr from "../contracts/smartMr.json";
 import MS_KOVAN from "../contracts/MS_KOVAN.json";
 import MR_KOVAN from "../contracts/MR_KOVAN.json";
+import USDT_kovan_contract from "../contracts/USDT_kovan.json";
+import buy_mr_contract from "../contracts/buy_mr.json";
 import { useStoreState, useStoreActions } from "../store/globalStore";
 import Swal from "sweetalert2";
 import { BigNumber } from "bignumber.js";
@@ -8,6 +10,28 @@ import { BigNumber } from "bignumber.js";
 const useContracts = () => {
   const { web3, account } = useStoreState((state) => state);
   const { setShouldUpdate } = useStoreActions((actions) => actions);
+
+  function getContractInstance(): any {
+    try {
+      return new web3.eth.Contract(
+        USDT_kovan_contract.abi,
+        USDT_kovan_contract.address
+      )
+    } catch (error) {
+      console.log('Error-getContractInstance: ', error)
+    }
+  }
+
+  const getBuyMrContract = () => {
+    try {
+      return new web3.eth.Contract(
+        buy_mr_contract.abi,
+        buy_mr_contract.address
+      );
+    } catch (error) {
+      
+    }
+  };
 
   const getSmartMr = () => {
     try {
@@ -39,6 +63,43 @@ const getMSToken = () => {
     );
   } catch (error) {
     
+  }
+};
+
+const buyMR = async (balance: string) => {
+  try {
+    let buyMrCntract = getBuyMrContract();
+    if(buyMrCntract == undefined) {
+      alert("Please Connect Metamask")
+      return
+    }
+    const mrBalance = await checkBalanceMROfAny(buy_mr_contract.address);
+    
+    if(new BigNumber(mrBalance) >= new BigNumber(balance).multipliedBy(1e18)) {
+      if(new BigNumber(balance).multipliedBy(1e6).modulo(1e6).toString() == '0') {
+        buyMrCntract.methods
+        .buyMR(new BigNumber(balance).multipliedBy(1e6)) // usdt 1e6
+        .send({
+          from: account,
+        })
+        .on("error", function () {
+          Swal.fire("reverted", "Tx has been cancelled by user", "error");
+        })
+        .on("transactionHash", function (hash: any) {
+          Swal.fire("Success!", "Tx Submitted", "success");
+        })
+        .on("receipt", function (receipt: any) {
+          setShouldUpdate(true);
+        });
+      } else {
+        alert("Amount should not be in fraction.")
+      }
+
+    } else {
+      alert("Not Enough balance in MR wallet!")
+    }
+  } catch (error) {
+    console.log('depositMR-Error: ', error)
   }
 };
 
@@ -99,19 +160,19 @@ const withDrawMR = async (balance: string) => {
   }
 };
 
-  const approveToken = async (erc20token: "DAI" | "USDT" | "USDC") => {
+  const approveToken = async () => {
     try {
       let maxValue =
         "115792089237316195423570985008687907853269984665640564039457584007913129639935";
   
-      let TokenContractInstance = geMRToken();
+      let TokenContractInstance = getContractInstance();
       if(TokenContractInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
   
       TokenContractInstance.methods
-        .approve(smartMr.address, maxValue)
+        .approve(buy_mr_contract.address, maxValue)
         .send({
           from: account,
         })
@@ -236,6 +297,23 @@ const withDrawMR = async (balance: string) => {
     }
   };
 
+  const checkBalanceMROfAny = async (address: string) => {
+    try {
+      let MRInstance = geMRToken();
+      if(MRInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+      let mrBalance = await MRInstance.methods
+        .balanceOf(address)
+        .call();
+      console.log('msBalance: ', mrBalance)
+      return mrBalance
+    } catch (error) {
+      
+    }
+  };
+
   return {
     approveToken,
     depositMR,
@@ -244,7 +322,8 @@ const withDrawMR = async (balance: string) => {
     checkAllowanceMR,
     checkReward,
     checkBalanceMS,
-    checkBalanceMR
+    checkBalanceMR,
+    buyMR
   };
 };
 

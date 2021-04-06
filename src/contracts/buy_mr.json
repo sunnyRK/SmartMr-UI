@@ -1,0 +1,218 @@
+{
+    "address": "0xc8eA8c4775D94C48444fF34d947363c3E457DDdD",
+    "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_usdtToken",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_mrToken",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "previousOwner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnershipTransferred",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "buyMR",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_mrToken",
+                    "type": "address"
+                }
+            ],
+            "name": "changeMRoken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_usdToken",
+                    "type": "address"
+                }
+            ],
+            "name": "changeUSDoken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_token",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
+            "name": "checkBalance",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_addr",
+                    "type": "address"
+                }
+            ],
+            "name": "checkDecimals",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "mrToken",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "account",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "takeMR",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "account",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "takeUSDT",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "usdToken",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ]
+  }
+  
