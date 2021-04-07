@@ -11,14 +11,20 @@ import GasModal from "./components/GasModal";
 const store = createStore<IGlobalStore>(globalStore);
 
 function App() {
+// const App: React.FunctionComponent = () => {
+
+  // const { connected } = useStoreState((state) => state);
+
   return (
     <StoreProvider store={store}>
       <div className="App">
         <div className="main-card">
           <InfoHeader />
           <div className="body">
-            <ConnectWeb3 />
-            <GasModal />
+            {/* {connected ? 
+              <GasModal /> 
+              <ConnectWeb3 />} */}
+                            <GasModal /> 
           </div>
         </div>
       </div>

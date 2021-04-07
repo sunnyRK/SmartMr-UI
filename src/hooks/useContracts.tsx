@@ -264,8 +264,26 @@ const withDrawMR = async (balance: string) => {
       }
       return reward
     } catch (error) {
-      
-    }
+      console.log(error)
+    } 
+  };
+
+  const checkUserInfo = async () => {
+    try {
+      let SmartMrInstance = getSmartMr();
+      if(SmartMrInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+      let userInfo = await SmartMrInstance.methods
+        .userInfo(account)
+        .call();
+
+      console.log('userInfo: ', userInfo)
+      return userInfo
+    } catch (error) {
+      console.log(error)
+    } 
   };
 
   const checkBalanceMS = async () => {
@@ -325,6 +343,7 @@ const withDrawMR = async (balance: string) => {
     checkReward,
     checkBalanceMS,
     checkBalanceMR,
+    checkUserInfo,
     buyMR
   };
 };
