@@ -87,6 +87,9 @@ const GasModal: React.FunctionComponent = () => {
         const userInfoDetails: any = await checkUserInfo()
         console.log('userInfoDetails: ', userInfoDetails, parseFloat(userInfoDetails[0])/1e18)
         setUserInfo(userInfoDetails)
+        if(userInfoDetails[2] != '0x0000000000000000000000000000000000000000') {
+          setInvitorAddress(userInfoDetails[2]);
+        }
       } catch (error) {
         console.log(error)
       }

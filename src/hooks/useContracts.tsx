@@ -111,6 +111,7 @@ const buyMR = async (balance: string) => {
 
 const depositMR = async (balance: string, addressInvitor: string) => {
   try {
+    console.log('balance', balance, addressInvitor)
     let SmartMrInstance = getSmartMr();
     if(SmartMrInstance == undefined) {
       alert("Please Connect Metamask")
