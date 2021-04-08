@@ -7,6 +7,7 @@ import { createStore, StoreProvider } from "easy-peasy";
 import InfoHeader from "./components/InfoHeader";
 import ConnectWeb3 from "./components/ConnectWeb3";
 import GasModal from "./components/GasModal";
+import WithdrawMR from "./components/WithdrawMR";
 
 const store = createStore<IGlobalStore>(globalStore);
 
@@ -21,10 +22,8 @@ function App() {
         <div className="main-card">
           <InfoHeader />
           <div className="body">
-            {/* {connected ? 
               <GasModal /> 
-              <ConnectWeb3 />} */}
-                            <GasModal /> 
+              {/* <WithdrawMR /> */}
           </div>
         </div>
       </div>
