@@ -129,7 +129,7 @@ const GasModal: React.FunctionComponent = () => {
   return (
     !connected ? ( <ConnectWeb3 /> ) : (
     <>
-    <Container fixed>
+    <Container>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={3}>
