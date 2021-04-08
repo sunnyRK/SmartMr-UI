@@ -139,12 +139,12 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Claimable MS Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable MS Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5">{parseFloat(claimableReward)/1e18} MS</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableReward)/1e18} MS</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -153,12 +153,12 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Your current MS Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your current MS Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5">{parseFloat(msBalance)/1e18} MS</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(msBalance)/1e18} MS</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -167,12 +167,12 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Your Stacked MR Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your Stacked MR Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5">{parseFloat(userInfo[0])/1e18} MR</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} MR</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -181,12 +181,12 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Your current MR Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your current MR Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5">{parseFloat(mrBalance)/1e18} MR</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(mrBalance)/1e18} MR</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -196,7 +196,7 @@ const GasModal: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Deposit MR</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Deposit MR</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Stake MR token to earn MS token</Typography>
@@ -265,7 +265,7 @@ const GasModal: React.FunctionComponent = () => {
               <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Withdraw MR</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Withdraw MR</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Withdraw MR token and harvest all earned MS token</Typography>
@@ -300,7 +300,7 @@ const GasModal: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3">Marketplace of MR token</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Marketplace of MR token</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Buy MR token by depositing USDT token</Typography>

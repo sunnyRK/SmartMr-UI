@@ -3,12 +3,10 @@ import Web3Modal from "web3modal";
 import Web3 from "web3";
 import Authereum from "authereum";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-// import Web3Connect from "web3connect";
 
 import { useStoreActions, useStoreState } from "../store/globalStore";
 import CustomButton from "./CustomButton";
 import Swal from "sweetalert2";
-// import Onboard from 'bnc-onboard'
 
 const ConnectWeb3: React.FunctionComponent = () => {
   const { setAccount, setNetwork, setWeb3, setConnected } = useStoreActions(
@@ -35,26 +33,26 @@ const ConnectWeb3: React.FunctionComponent = () => {
       check: "isMetaMask",
       package: null,
     },
-    authereum: {
-      package: Authereum,
-    },
-    walletconnect: {
-      package: WalletConnectProvider,
-      options: {
-        infuraId: "INFURA_ID",
-        network: "rinkeby",
-        qrcodeModalOptions: {
-          mobileLinks: [
-            "rainbow",
-            "metamask",
-            "argent",
-            "trust",
-            "imtoken",
-            "pillar",
-          ],
-        },
-      },
-    },
+    // authereum: {
+    //   package: Authereum,
+    // },
+    // walletconnect: {
+    //   package: WalletConnectProvider,
+    //   options: {
+    //     infuraId: "INFURA_ID",
+    //     network: "rinkeby",
+    //     qrcodeModalOptions: {
+    //       mobileLinks: [
+    //         "rainbow",
+    //         "metamask",
+    //         "argent",
+    //         "trust",
+    //         "imtoken",
+    //         "pillar",
+    //       ],
+    //     },
+    //   },
+    // },
   };
 
   const web3Modal = new Web3Modal({
@@ -89,7 +87,9 @@ const ConnectWeb3: React.FunctionComponent = () => {
   };
 
   const onLoginMetamask = async () => {
-    const provider = await web3Modal.connect();
+    // const provider = await web3Modal.connect();
+    // web3 = new Web3(window.web3.currentProvider);
+    const provider: any = window?.web3.currentProvider;
     await subscribeProvider(provider);
     const web3: any = new Web3(provider);
 
@@ -108,6 +108,16 @@ const ConnectWeb3: React.FunctionComponent = () => {
       //  Create WalletConnect Provider
       const provider: any = new WalletConnectProvider({
         infuraId: "37bd907f93a146679960d54e729cd51a", // Required
+        // qrcodeModalOptions: {
+        //   mobileLinks: [
+        //     "rainbow",
+        //     "metamask",
+        //     "argent",
+        //     "trust",
+        //     "imtoken",
+        //     "pillar"
+        //   ]
+        // }
       });
 
       // //  Enable session (triggers QR Code modal)
