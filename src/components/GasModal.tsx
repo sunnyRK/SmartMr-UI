@@ -190,7 +190,15 @@ const GasModal: React.FunctionComponent = () => {
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>
-              <Grid container spacing={3}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Deposit MR</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Stake MR token to earn MS token</Typography>
+                </ThemeProvider>
+              </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
@@ -252,6 +260,14 @@ const GasModal: React.FunctionComponent = () => {
           <Grid item xs={6}>
             <Paper className={classes.paper}>
               <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Withdraw MR</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Withdraw MR token and harvest all earned MS token</Typography>
+                </ThemeProvider>
+                </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
@@ -278,7 +294,15 @@ const GasModal: React.FunctionComponent = () => {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
-              <Grid container spacing={3}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Marketplace of MR token</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Buy MR token by depositing USDT token</Typography>
+                </ThemeProvider>
+                </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
