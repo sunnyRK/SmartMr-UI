@@ -15,6 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -41,6 +42,8 @@ const useStyles2 = makeStyles((theme) => ({
   },
 }));
 
+
+
 const theme = createMuiTheme();
 
 theme.typography.h3 = {
@@ -56,7 +59,6 @@ theme.typography.h3 = {
 const GasModal: React.FunctionComponent = () => {
 
   const classes = useStyles();
-  const classes2 = useStyles2();
 
   const { connected } = useStoreState((state) => state);
   const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS, approveToken, buyMR, checkUserInfo } = useContracts();
@@ -229,7 +231,9 @@ const GasModal: React.FunctionComponent = () => {
                     className="approve-token-button"
                     onClick={() => approveTokenMR()}
                   >
-                    Approve MR
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Approve MR</Typography>
+                    </ThemeProvider> 
                   </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -237,7 +241,9 @@ const GasModal: React.FunctionComponent = () => {
                     className="approve-token-button"
                     onClick={() => depositMR(mrDepositAmount, invitorAddress)}
                   >
-                    Deposit MR
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Deposit MR</Typography>
+                    </ThemeProvider> 
                   </div>
                 </Grid>
               </Grid>
@@ -262,7 +268,9 @@ const GasModal: React.FunctionComponent = () => {
                     className="approve-token-button"
                     onClick={() => withDrawMR(mrWithdrawAmount)}
                   >
-                    Withdraw MR
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Withdraw MR</Typography>
+                    </ThemeProvider> 
                   </div>
                 </Grid>
               </Grid>
@@ -287,7 +295,9 @@ const GasModal: React.FunctionComponent = () => {
                     className="approve-token-button"
                     onClick={() => approveToken()}
                   >
-                    Approve USDT
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Approve USDT</Typography>
+                    </ThemeProvider> 
                   </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -295,7 +305,9 @@ const GasModal: React.FunctionComponent = () => {
                     className="approve-token-button"
                     onClick={() => buyMR(mrBuyAmount)}
                   >
-                    Buy MR
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>BUY MR</Typography>
+                    </ThemeProvider> 
                   </div>
                 </Grid>
               </Grid>

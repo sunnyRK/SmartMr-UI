@@ -236,9 +236,9 @@ p {
   padding: 1rem;
   font-weight: 300;
   font-size: 0.8rem;
-  color: var(--pastel-black);
-  background: var(--pastel-teal);
-  border-radius: 1rem;
+  color: var(--pastel-off-white);
+  background: var(--pastel-black);
+  border-radius: 0.35rem;
   text-align: center;
   cursor: pointer;
 }
