@@ -11,8 +11,55 @@ import { useStoreState } from "../store/globalStore";
 import Swal from "sweetalert2";
 import ConnectWeb3 from "./ConnectWeb3";
 
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
+import { makeStyles } from '@material-ui/core/styles';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+// Input
+const useStyles2 = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
+
+
+
+const theme = createMuiTheme();
+
+theme.typography.h3 = {
+  fontSize: '1.2rem',
+  '@media (min-width:600px)': {
+    fontSize: '1.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem',
+  },
+};
 
 const GasModal: React.FunctionComponent = () => {
+
+  const classes = useStyles();
+
   const { connected } = useStoreState((state) => state);
   const { checkAllowanceMR, approveTokenMR, depositMR, withDrawMR, checkReward, checkBalanceMR, checkBalanceMS, approveToken, buyMR, checkUserInfo } = useContracts();
 
@@ -81,78 +128,218 @@ const GasModal: React.FunctionComponent = () => {
 
   return (
     !connected ? ( <ConnectWeb3 /> ) : (
-      <>
-    <div className="checking-allowance">
-      Claimable MS Reward: {parseFloat(claimableReward)/1e18} 
-    </div>
-    
-
-    <div className="checking-allowance">
-      Your current MS Balance: {parseFloat(msBalance)/1e18} 
-    </div>
-
-    <div className="checking-allowance">
-      Your Stacked MR Balance: {parseFloat(userInfo[0])/1e18} 
-    </div>
-
-    <div className="checking-allowance">
-      Your current MR Balance: {parseFloat(mrBalance)/1e18} 
-    </div>
-
-    <div
-      className="approve-token-button"
-      onClick={() => checkRewardOfClaim()}
-    >
-      Clieck here to Check Claimable Reward and Balance
-    </div>
-
-    <div
-      className="approve-token-button"
-      onClick={() => approveTokenMR()}
-    >
-      Approve MR
-    </div>
-
-    <input style={{height: '40px'}} onChange={handleDepositAmount} placeholder="Add Deposit MR amount"></input>
-    
-    {
-      userInfo[2] == '0x0000000000000000000000000000000000000000' ? 
-      <input style={{height: '40px'}} onChange={handleInvitorAddress} placeholder="Invitor Address"></input> :
-      <input disabled style={{height: '40px'}} onChange={handleInvitorAddress} placeholder="Invitor Address" value={userInfo[2]}></input>
-    }
-
-    <div
-      className="approve-token-button"
-      onClick={() => depositMR(mrDepositAmount, invitorAddress)}
-    >
-      Deposit MR
-    </div>
-
-    <input style={{height: '40px'}} onChange={handleWithdrawAmount} placeholder="Add Withdraw MR amount"></input>
-
-    <div
-      className="approve-token-button"
-      onClick={() => withDrawMR(mrWithdrawAmount)}
-    >
-      Withdraw MR
-    </div>
-
-
-    <div
-      className="approve-token-button"
-      onClick={() => approveToken()}
-    >
-      Approve USDT
-    </div>
-
-    <input style={{height: '40px'}} onChange={handleBuyMRAmount} placeholder="Add Buy MR amount"></input>
-
-    <div
-      className="approve-token-button"
-      onClick={() => buyMR(mrBuyAmount)}
-    >
-      Buy MR
-    </div>
+    <>
+    <Container fixed>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Claimable MS Reward</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">{parseFloat(claimableReward)/1e18} MS</Typography>
+                </ThemeProvider>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Your current MS Balance</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">{parseFloat(msBalance)/1e18} MS</Typography>
+                </ThemeProvider>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Your Stacked MR Balance</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">{parseFloat(userInfo[0])/1e18} MR</Typography>
+                </ThemeProvider>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Your current MR Balance</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5">{parseFloat(mrBalance)/1e18} MR</Typography>
+                </ThemeProvider>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Deposit MR</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Stake MR token to earn MS token</Typography>
+                </ThemeProvider>
+              </Grid>
+                <Grid item xs={12}>
+                  <TextField 
+                    style={{width: "100%", height: '40px'}} 
+                    id="outlined-search" 
+                    label="Add Deposit MR amount" 
+                    type="search" 
+                    variant="outlined" 
+                    onChange={handleDepositAmount}  
+                  />
+                  {/* <input style={{width: "100%", height: '40px'}} onChange={handleDepositAmount} placeholder="Add Deposit MR amount"></input> */}
+                </Grid>
+                <Grid item xs={12}>
+                  {
+                    userInfo[2] == '0x0000000000000000000000000000000000000000' ? 
+                    <TextField 
+                      style={{width: "100%", height: '40px'}} 
+                      id="outlined-search" 
+                      label="Invitor Address" 
+                      type="search" 
+                      variant="outlined" 
+                      onChange={handleInvitorAddress}  
+                    /> :
+                    // <input style={{width: "100%", height: '40px'}} onChange={handleInvitorAddress} placeholder="Invitor Address"></input> :
+                    <TextField 
+                      disabled
+                      style={{width: "100%", height: '40px'}} 
+                      id="outlined-search" 
+                      type="search" 
+                      variant="outlined" 
+                      value={userInfo[2]}
+                      onChange={handleInvitorAddress}  
+                    />
+                    // <input disabled style={{width: "100%", height: '40px'}} onChange={handleInvitorAddress} placeholder="Invitor Address" value={userInfo[2]}></input>
+                  }
+                </Grid>
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => approveTokenMR()}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Approve MR</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => depositMR(mrDepositAmount, invitorAddress)}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Deposit MR</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item xs={6}>
+            <Paper className={classes.paper}>
+              <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Withdraw MR</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Withdraw MR token and harvest all earned MS token</Typography>
+                </ThemeProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField 
+                    style={{width: "100%", height: '40px'}} 
+                    id="outlined-search" 
+                    label="Add Withdraw MR amount" 
+                    type="search" 
+                    variant="outlined" 
+                    onChange={handleWithdrawAmount}  
+                  />
+                  {/* <input style={{width: "100%", height: '40px'}} onChange={handleWithdrawAmount} placeholder="Add Withdraw MR amount"></input> */}
+                </Grid>
+                <Grid item xs={12}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => withDrawMR(mrWithdrawAmount)}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Withdraw MR</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3">Marketplace of MR token</Typography>
+                </ThemeProvider>
+                <ThemeProvider theme={theme}>
+                  <Typography variant="subtitle1">Buy MR token by depositing USDT token</Typography>
+                </ThemeProvider>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField 
+                    style={{width: "100%", height: '40px'}} 
+                    id="outlined-search" 
+                    label="Add Buy MR amount" 
+                    type="search" 
+                    variant="outlined" 
+                    onChange={handleBuyMRAmount}  
+                  />
+                  {/* <input style={{width: "100%", height: '40px'}} onChange={handleBuyMRAmount} placeholder="Add Buy MR amount"></input> */}
+                </Grid>
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => approveToken()}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Approve USDT</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => buyMR(mrBuyAmount)}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>BUY MR</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+              </Grid>
+            </Paper>
+          </Grid>
+        </Grid>
+      </div>
+      </Container>
     </>
   ));
 };
