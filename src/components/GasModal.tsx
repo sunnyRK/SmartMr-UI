@@ -132,7 +132,7 @@ const GasModal: React.FunctionComponent = () => {
 
   return (
     !connected ? ( 
-      <div style={{margin: "auto", width: "50%", padding: "0px", marginLeft: "32%"}}>
+      <div style={{margin: "auto", width: "50%", padding: "0px", marginLeft: "0%"}}>
         <ConnectWeb3 />
       </div>
       ) : (
