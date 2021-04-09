@@ -23,9 +23,7 @@ function App() {
         <div className="main-card">
           <InfoHeader />
           <div className="body">
-              <div>
-                <GasModal /> 
-              </div>
+            <GasModal /> 
           </div>
         </div>
       </div>
