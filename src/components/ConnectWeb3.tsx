@@ -87,6 +87,8 @@ const ConnectWeb3: React.FunctionComponent = () => {
   };
 
   const onLoginMetamask = async () => {
+    try {
+      
     // const provider = await web3Modal.connect();
     // web3 = new Web3(window.web3.currentProvider);
     const provider: any = window?.web3.currentProvider;
@@ -101,6 +103,9 @@ const ConnectWeb3: React.FunctionComponent = () => {
     await setAccount(address);
     await setNetwork(network);
     await setConnected(true);
+    } catch (error) {
+      alert("Something went wrong or metamask is not available.")
+    }
   };
 
   const onLoginWalletConnect = async () => {
@@ -135,7 +140,7 @@ const ConnectWeb3: React.FunctionComponent = () => {
       await setNetwork(network);
       await setConnected(true);
     } catch (error) {
-      
+      alert("Something went wrong or walletconnect is not available.")
     }
   }
 
