@@ -8,6 +8,7 @@ import InfoHeader from "./components/InfoHeader";
 import ConnectWeb3 from "./components/ConnectWeb3";
 import GasModal from "./components/GasModal";
 import WithdrawMR from "./components/WithdrawMR";
+import logo from "./assets/images/logo.png";
 
 const store = createStore<IGlobalStore>(globalStore);
 
@@ -22,8 +23,9 @@ function App() {
         <div className="main-card">
           <InfoHeader />
           <div className="body">
-              <GasModal /> 
-              {/* <WithdrawMR /> */}
+              <div>
+                <GasModal /> 
+              </div>
           </div>
         </div>
       </div>

@@ -15,10 +15,12 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import logo from "../assets/images/logo.png";
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 
@@ -131,6 +133,31 @@ const GasModal: React.FunctionComponent = () => {
   };
 
   return (
+    
+    // <div className="container1">
+    //   <div className="box">1</div>
+    //   <div className="box">2</div>
+    //   <div className="box">3</div>
+    //   <div className="box">4</div>
+    // </div>
+
+  //   <div className="container">
+  //     <Grid container spacing={3}>
+  //       <Grid  className="box">
+  //         <div>1</div>
+  //       </Grid>
+  //       <Grid  className="box" item xs={6}>
+  //         <div className="box2">1</div>
+  //       </Grid>
+  //       <Grid  className="box" item xs={6}>
+  //       <div className="box2">1</div>
+  //       </Grid>
+  //       <Grid  className="box" item xs={6}>
+  //       <div className="box2">1</div>
+  //       </Grid>
+  //     </Grid>
+  //   </div>
+  // );
     !connected ? ( 
       <div style={{margin: "auto", width: "50%", padding: "0px", marginLeft: "32%"}}>
         <ConnectWeb3 />
@@ -138,9 +165,10 @@ const GasModal: React.FunctionComponent = () => {
       ) : (
     <>
     <Container>
+    {/* <img src={logo} style={{width: "10%", height: "10%", marginBottom:"5%", marginLeft: "45%"}}></img> */}
       <div>
         <Grid container spacing={3} >
-          <Grid item xs={12}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
@@ -154,7 +182,7 @@ const GasModal: React.FunctionComponent = () => {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
@@ -168,7 +196,7 @@ const GasModal: React.FunctionComponent = () => {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
@@ -182,7 +210,7 @@ const GasModal: React.FunctionComponent = () => {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={3}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
@@ -196,7 +224,7 @@ const GasModal: React.FunctionComponent = () => {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Paper className={classes.paper}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
@@ -265,7 +293,7 @@ const GasModal: React.FunctionComponent = () => {
               </Grid>
             </Paper>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={6}>
             <Paper className={classes.paper}>
               <Grid container spacing={3}>
               <Grid item xs={12}>
