@@ -13,7 +13,17 @@ const ConnectWeb3: React.FunctionComponent = () => {
     (actions) => actions
   );
 
-  const { web3, connected } = useStoreState((state) => state);
+  let { web3, connected } = useStoreState((state) => state);
+
+  // const onboard = Onboard({
+  //   dappId: 'fd23905f-a384-4e42-8183-1cf2be825e95',       // [String] The API key created by step one above
+  //   networkId: 42,  // [Integer] The Ethereum network ID your Dapp uses.
+  //   subscriptions: {
+  //     wallet: wallet => {
+  //        web3 = new Web3(wallet.provider)
+  //     }
+  //   }
+  // });
 
   let providerOptions = {
     metamask: {
@@ -23,26 +33,26 @@ const ConnectWeb3: React.FunctionComponent = () => {
       check: "isMetaMask",
       package: null,
     },
-    authereum: {
-      package: Authereum,
-    },
-    walletconnect: {
-      package: WalletConnectProvider,
-      options: {
-        infuraId: "INFURA_ID",
-        network: "rinkeby",
-        qrcodeModalOptions: {
-          mobileLinks: [
-            "rainbow",
-            "metamask",
-            "argent",
-            "trust",
-            "imtoken",
-            "pillar",
-          ],
-        },
-      },
-    },
+    // authereum: {
+    //   package: Authereum,
+    // },
+    // walletconnect: {
+    //   package: WalletConnectProvider,
+    //   options: {
+    //     infuraId: "INFURA_ID",
+    //     network: "rinkeby",
+    //     qrcodeModalOptions: {
+    //       mobileLinks: [
+    //         "rainbow",
+    //         "metamask",
+    //         "argent",
+    //         "trust",
+    //         "imtoken",
+    //         "pillar",
+    //       ],
+    //     },
+    //   },
+    // },
   };
 
   const web3Modal = new Web3Modal({
@@ -76,8 +86,10 @@ const ConnectWeb3: React.FunctionComponent = () => {
     });
   };
 
-  const onConnect = async () => {
-    const provider = await web3Modal.connect();
+  const onLoginMetamask = async () => {
+    // const provider = await web3Modal.connect();
+    // web3 = new Web3(window.web3.currentProvider);
+    const provider: any = window?.web3.currentProvider;
     await subscribeProvider(provider);
     const web3: any = new Web3(provider);
 
@@ -91,16 +103,67 @@ const ConnectWeb3: React.FunctionComponent = () => {
     await setConnected(true);
   };
 
+  const onLoginWalletConnect = async () => {
+    try {
+      //  Create WalletConnect Provider
+      const provider: any = new WalletConnectProvider({
+        infuraId: "37bd907f93a146679960d54e729cd51a", // Required
+        // qrcodeModalOptions: {
+        //   mobileLinks: [
+        //     "rainbow",
+        //     "metamask",
+        //     "argent",
+        //     "trust",
+        //     "imtoken",
+        //     "pillar"
+        //   ]
+        // }
+      });
+
+      // //  Enable session (triggers QR Code modal)
+      await provider.enable();
+
+      await subscribeProvider(provider);
+      const web3: any = new Web3(provider);
+
+      const accounts = await web3.eth.getAccounts();
+      const address = accounts[0];
+      const network = await web3.eth.net.getNetworkType();
+
+      await setWeb3(web3);
+      await setAccount(address);
+      await setNetwork(network);
+      await setConnected(true);
+    } catch (error) {
+      
+    }
+  }
+
   return connected ? (
     <div />
   ) : (
-    <CustomButton
-      color="blue"
-      title={"Connect Metamask"}
-      description="Enable web3 wallet to perform Tx"
-      icon="grid"
-      onClick={connected ? resetApp : onConnect}
-    />
+    <div>
+      <div>
+        <CustomButton
+          color="blue"
+          title={"Connect Metamask"}
+          description="Enable web3 wallet to perform Tx"
+          icon="grid"
+          onClick={connected ? resetApp : onLoginMetamask}
+        />
+      </div>
+      <div style = {{marginTop: "30px"}}>      
+        <CustomButton
+          color="blue"
+          title={"Connect WalletConnect"}
+          description="Enable web3 wallet to perform Tx"
+          icon="grid"
+          onClick={connected ? resetApp : onLoginWalletConnect}
+        />
+      </div>
+    </div>
+    
+    
   );
 };
 
