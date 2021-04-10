@@ -293,7 +293,7 @@ const Main2: React.FunctionComponent = () => {
                     onClick={() => withDrawAIX(aixWithdrawAmount)}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>輸入需要解除質押的AIX數量</Typography>
+                      <Typography variant="button" display="block" gutterBottom>解除質押AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>

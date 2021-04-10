@@ -31,23 +31,23 @@ function App() {
       <Router>
         <div style={{margin: "20px"}}>
           <Grid container spacing={3}>
-              <Grid item xs={3}>
+              <Grid item xs={2}>
                 <Link to="/chinees" style={{color:"#ffffff", textDecoration: "none"}}>
                   <div
                     className="approve-token-button"
-                    style={{width:"75%"}}
+                    style={{width:"70%"}}
                   >
-                    Chinees
+                    CN
                   </div>
                 </Link>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={2}>
                 <Link to="/english" style={{color:"#ffffff", textDecoration: "none"}}>
                   <div
                     className="approve-token-button"
-                    style={{width:"75%"}}
+                    style={{width:"70%"}}
                   >
-                    English
+                    EN
                   </div>
                 </Link>
               </Grid>
