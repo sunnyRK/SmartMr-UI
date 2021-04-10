@@ -23,7 +23,7 @@ const InfoHeader: React.FunctionComponent = () => {
   return (
     <div className="header" style={{marginLeft: "10%"}}>
       <div className="title">
-        <img src={logo} style={{width: "20%", height: "20%", marginBottom:"0.1%"}}></img>
+        <img src={logo} style={{width: "30%", height: "30%", marginBottom:"0.1%"}}></img>
       </div>
       <div className="wallet-address">
         {/* {account ? `(${network}) ${account}` : "connect wallet to continue"} */}
