@@ -29,8 +29,8 @@ function App() {
   return (
     <StoreProvider store={store}>
       <Router>
-        <div style={{margin: "20px"}}>
-          <Grid container spacing={3}>
+        {/* <div style={{margin: "20px"}}> */}
+          {/* <Grid container spacing={3}>
               <Grid item xs={2}>
                 <Link to="/chinees" style={{color:"#ffffff", textDecoration: "none"}}>
                   <div
@@ -51,7 +51,7 @@ function App() {
                   </div>
                 </Link>
               </Grid>
-          </Grid>
+          </Grid> */}
           {/* <ul>
             <li>
               <Link to="/">Home</Link>
@@ -64,8 +64,8 @@ function App() {
             </li>
           </ul> */}
 
-          <hr />
-          </div>
+          {/* <hr />
+          </div> */}
           
           <Switch>
             <Route exact path="/">

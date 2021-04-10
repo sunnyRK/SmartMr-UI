@@ -3,7 +3,14 @@ import { useStoreState } from "../../store/globalStore";
 import logo from "../../assets/images/logo.png";
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 const theme = createMuiTheme();
 
 theme.typography.h3 = {
@@ -33,6 +40,19 @@ const InfoHeader: React.FunctionComponent = () => {
           </Typography>
         </ThemeProvider> 
       </div>
+      
+      <Grid container spacing={3} style={{marginLeft:"70%"}}>    
+        <Grid item xs={2}>
+          <Link to="/chinees" style={{color:"#ffffff", textDecoration: "none"}}>
+            <div
+              className="approve-token-button"
+              style={{width:"70%"}}
+            >
+              CN
+            </div>
+          </Link>
+        </Grid>
+      </Grid>
     </div>
   );
 };
