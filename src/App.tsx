@@ -35,18 +35,21 @@ function App() {
                 <Link to="/chinees" style={{color:"#ffffff", textDecoration: "none"}}>
                   <div
                     className="approve-token-button"
-                  >Chinees
+                    style={{width:"75%"}}
+                  >
+                    Chinees
                   </div>
                 </Link>
               </Grid>
               <Grid item xs={3}>
                 <Link to="/english" style={{color:"#ffffff", textDecoration: "none"}}>
-                    <div
-                      className="approve-token-button"
-                    >
-                      English
-                    </div>
-                  </Link>
+                  <div
+                    className="approve-token-button"
+                    style={{width:"75%"}}
+                  >
+                    English
+                  </div>
+                </Link>
               </Grid>
           </Grid>
           {/* <ul>
