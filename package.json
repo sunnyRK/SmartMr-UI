@@ -11,6 +11,7 @@
     "@types/node": "^12.19.16",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.7",
     "@walletconnect/web3-provider": "^1.4.1",
     "authereum": "^0.1.0",
     "easy-peasy": "^4.0.1",
@@ -48,7 +49,11 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7"
   }
+=======
+  "devDependencies": {}
+>>>>>>> 5939e241bace82cae182019da59d5c5159cf9c2a
 }
