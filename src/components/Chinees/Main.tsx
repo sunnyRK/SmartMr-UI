@@ -5,9 +5,9 @@ import { Modal } from "react-responsive-modal";
 
 // import CustomButton from "./CustomButton";
 import SmallButtons from "./SmallButtons";
-import useContracts from "../hooks/useContracts";
+import useContracts from "../../hooks/useContracts";
 import ApproveButton from "./ApproveButton";
-import { useStoreState } from "../store/globalStore";
+import { useStoreState } from "../../store/globalStore";
 import Swal from "sweetalert2";
 import ConnectWeb3 from "./ConnectWeb3";
 
@@ -57,7 +57,7 @@ theme.typography.h3 = {
   },
 };
 
-const GasModal: React.FunctionComponent = () => {
+const Main2: React.FunctionComponent = () => {
 
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:600px)');
@@ -144,7 +144,7 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>已經獲得AIXT挖礦收益</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -158,7 +158,7 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your current AIXT Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您錢包里的AIXT餘額</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -172,7 +172,7 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your Stacked AIX Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您所質押的AIX餘額</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -186,7 +186,7 @@ const GasModal: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your current AIX Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您錢包里的AIX餘額</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -201,17 +201,17 @@ const GasModal: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Deposit AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>質押AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="subtitle1">Stake AIX token to earn AIXT token</Typography>
+                  <Typography variant="subtitle1">質押AIX來獲得AIXT</Typography>
                 </ThemeProvider>
               </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
                     id="outlined-search" 
-                    label="Add Deposit AIX amount" 
+                    label="輸入需要質押的AIX數量" 
                     type="search" 
                     variant="outlined" 
                     onChange={handleDepositAmount}  
@@ -224,7 +224,7 @@ const GasModal: React.FunctionComponent = () => {
                     <TextField 
                       style={{width: "100%", height: '40px'}} 
                       id="outlined-search" 
-                      label="Invitor Address" 
+                      label="輸入邀請您的用戶錢包地址" 
                       type="search" 
                       variant="outlined" 
                       onChange={handleInvitorAddress}  
@@ -248,7 +248,7 @@ const GasModal: React.FunctionComponent = () => {
                     onClick={() => approveTokenAIX()}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>Approve AIX</Typography>
+                      <Typography variant="button" display="block" gutterBottom>批准使用AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
@@ -258,7 +258,7 @@ const GasModal: React.FunctionComponent = () => {
                     onClick={() => depositAIX(aixDepositAmount, invitorAddress)}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>Deposit AIX</Typography>
+                      <Typography variant="button" display="block" gutterBottom>質押AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
@@ -270,17 +270,17 @@ const GasModal: React.FunctionComponent = () => {
               <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Withdraw AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>解除質押AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="subtitle1">Withdraw AIX token and harvest all earned AIXT token</Typography>
+                  <Typography variant="subtitle1">解除質押AIX並且提取所獲得的AIXT</Typography>
                 </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
                     id="outlined-search" 
-                    label="Add Withdraw AIX amount" 
+                    label="輸入需要解除質押的AIX數量" 
                     type="search" 
                     variant="outlined" 
                     onChange={handleWithdrawAmount}  
@@ -293,7 +293,7 @@ const GasModal: React.FunctionComponent = () => {
                     onClick={() => withDrawAIX(aixWithdrawAmount)}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>Withdraw AIX</Typography>
+                      <Typography variant="button" display="block" gutterBottom>輸入需要解除質押的AIX數量</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
@@ -305,17 +305,17 @@ const GasModal: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Marketplace of AIX token</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>購買AIX代幣</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="subtitle1">Buy AIX token by depositing USDT token</Typography>
+                  <Typography variant="subtitle1">使用USDT購買AIX代幣</Typography>
                 </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField 
                     style={{width: "100%", height: '40px'}} 
                     id="outlined-search" 
-                    label="Add Buy AIX amount" 
+                    label="輸入需要購買的AIX的數量" 
                     type="search" 
                     variant="outlined" 
                     onChange={handleBuyAIXAmount}  
@@ -328,7 +328,7 @@ const GasModal: React.FunctionComponent = () => {
                     onClick={() => approveToken()}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>Approve USDT</Typography>
+                      <Typography variant="button" display="block" gutterBottom>批准使用USDT</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
@@ -338,7 +338,7 @@ const GasModal: React.FunctionComponent = () => {
                     onClick={() => buyAIX(aixBuyAmount)}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>BUY AIX</Typography>
+                      <Typography variant="button" display="block" gutterBottom>購買AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
@@ -352,4 +352,4 @@ const GasModal: React.FunctionComponent = () => {
   ));
 };
 
-export default GasModal;
+export default Main2;

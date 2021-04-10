@@ -1,8 +1,8 @@
 import smartMr from "../contracts/smartMr.json";
-import MS_KOVAN from "../contracts/MS_KOVAN.json";
-import MR_KOVAN from "../contracts/MR_KOVAN.json";
+import AIXT_KOVAN from "../contracts/AIXT_KOVAN.json";
+import AIX_KOVAN from "../contracts/AIX_KOVAN.json";
 import USDT_kovan_contract from "../contracts/USDT_kovan.json";
-import buy_mr_contract from "../contracts/buy_mr.json";
+import buy_aix_contract from "../contracts/buy_aix.json";
 import { useStoreState, useStoreActions } from "../store/globalStore";
 import Swal from "sweetalert2";
 import { BigNumber } from "bignumber.js";
@@ -25,8 +25,8 @@ const useContracts = () => {
   const getBuyMrContract = () => {
     try {
       return new web3.eth.Contract(
-        buy_mr_contract.abi,
-        buy_mr_contract.address
+        buy_aix_contract.abi,
+        buy_aix_contract.address
       );
     } catch (error) {
       
@@ -44,29 +44,29 @@ const useContracts = () => {
     }
   };
 
-  const geMRToken = () => {
+  const geAIXToken = () => {
     try {
       return new web3.eth.Contract(
-        MR_KOVAN.abi,
-        MR_KOVAN.address
+        AIX_KOVAN.abi,
+        AIX_KOVAN.address
       );
     } catch (error) {
       
     }
 };
 
-const getMSToken = () => {
+const getAIXTToken = () => {
   try {
     return new web3.eth.Contract(
-      MS_KOVAN.abi,
-      MS_KOVAN.address
+      AIXT_KOVAN.abi,
+      AIXT_KOVAN.address
     );
   } catch (error) {
     
   }
 };
 
-const buyMR = async (balance: string) => {
+const buyAIX = async (balance: string) => {
   try {
     let buyMrCntract = getBuyMrContract();
     if(buyMrCntract == undefined) {
@@ -79,12 +79,12 @@ const buyMR = async (balance: string) => {
       return
     }
 
-    const mrBalance = await checkBalanceMROfAny(buy_mr_contract.address);
+    const aixBalance = await checkBalanceAIXOfAny(buy_aix_contract.address);
 
-    if(new BigNumber(mrBalance).gte(new BigNumber(balance).multipliedBy(1e18))) {
+    if(new BigNumber(aixBalance).gte(new BigNumber(balance).multipliedBy(1e18))) {
       if(new BigNumber(balance).multipliedBy(1e6).modulo(1e6).eq(0)) {
         buyMrCntract.methods
-        .buyMR(new BigNumber(balance).multipliedBy(1e6)) // usdt 1e6
+        .buyAIX(new BigNumber(balance).multipliedBy(1e6)) // usdt 1e6
         .send({
           from: account,
         })
@@ -102,14 +102,14 @@ const buyMR = async (balance: string) => {
       }
 
     } else {
-      alert("Not Enough balance in MR wallet!")
+      alert("Not Enough balance in AIX wallet!")
     }
   } catch (error) {
-    console.log('depositMR-Error: ', error)
+    console.log('depositAIX-Error: ', error)
   }
 };
 
-const depositMR = async (balance: string, addressInvitor: string) => {
+const depositAIX = async (balance: string, addressInvitor: string) => {
   try {
     console.log('balance', balance, addressInvitor)
     let SmartMrInstance = getSmartMr();
@@ -118,7 +118,7 @@ const depositMR = async (balance: string, addressInvitor: string) => {
       return
     }
     SmartMrInstance.methods
-      .depositMR(new BigNumber(balance).multipliedBy(1e18), addressInvitor)
+      .depositAIX(new BigNumber(balance).multipliedBy(1e18), addressInvitor)
       .send({
         from: account,
       })
@@ -133,11 +133,11 @@ const depositMR = async (balance: string, addressInvitor: string) => {
       });
     
   } catch (error) {
-    console.log('depositMR-Error: ', error)
+    console.log('depositAIX-Error: ', error)
   }
 };
 
-const withDrawMR = async (balance: string) => {
+const withDrawAIX = async (balance: string) => {
   try {
     let SmartMrInstance = getSmartMr();
 
@@ -147,7 +147,7 @@ const withDrawMR = async (balance: string) => {
     }
   
     SmartMrInstance.methods
-      .withDrawMR(new BigNumber(balance).multipliedBy(1e18))
+      .withDrawAIX(new BigNumber(balance).multipliedBy(1e18))
       .send({
         from: account,
       })
@@ -162,7 +162,7 @@ const withDrawMR = async (balance: string) => {
       });
     
   } catch (error) {
-    console.log('withDrawMR-Error: ', error)
+    console.log('withDrawAIX-Error: ', error)
   }
 };
 
@@ -178,7 +178,7 @@ const withDrawMR = async (balance: string) => {
       }
   
       TokenContractInstance.methods
-        .approve(buy_mr_contract.address, maxValue)
+        .approve(buy_aix_contract.address, maxValue)
         .send({
           from: account,
         })
@@ -197,12 +197,12 @@ const withDrawMR = async (balance: string) => {
     }
   };
 
-  const approveTokenMR = async () => {
+  const approveTokenAIX = async () => {
     try {
       let maxValue =
       "115792089237316195423570985008687907853269984665640564039457584007913129639935";
 
-      let TokenContractInstance = geMRToken();
+      let TokenContractInstance = geAIXToken();
 
       if(TokenContractInstance == undefined) {
         alert("Please Connect Metamask")
@@ -224,13 +224,13 @@ const withDrawMR = async (balance: string) => {
           setShouldUpdate(true);
         });
     } catch (error) {
-      console.log('approveTokenMR-Error: ', error)
+      console.log('approveTokenAIX-Error: ', error)
     }
   };
 
-  const checkAllowanceMR = async () => {
+  const checkAllowanceAIX = async () => {
     try {
-      let TokenContractInstance = geMRToken();
+      let TokenContractInstance = geAIXToken();
       if(TokenContractInstance == undefined) {
         alert("Please Connect Metamask")
         return
@@ -287,49 +287,49 @@ const withDrawMR = async (balance: string) => {
     } 
   };
 
-  const checkBalanceMS = async () => {
+  const checkBalanceAIXT = async () => {
     try {
-      let MSInstance = getMSToken();
-      if(MSInstance == undefined) {
+      let AIXTInstance = getAIXTToken();
+      if(AIXTInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let msBalance = await MSInstance.methods
+      let aixtBalance = await AIXTInstance.methods
         .balanceOf(account)
         .call();
-      return msBalance 
+      return aixtBalance 
     } catch (error) {
       
     }
   };
 
-  const checkBalanceMR = async () => {
+  const checkBalanceAIX = async () => {
     try {
-      let MRInstance = geMRToken();
-      if(MRInstance == undefined) {
+      let AIXInstance = geAIXToken();
+      if(AIXInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let mrBalance = await MRInstance.methods
+      let aixBalance = await AIXInstance.methods
         .balanceOf(account)
         .call();
-      return mrBalance
+      return aixBalance
     } catch (error) {
       
     }
   };
 
-  const checkBalanceMROfAny = async (address: string) => {
+  const checkBalanceAIXOfAny = async (address: string) => {
     try {
-      let MRInstance = geMRToken();
-      if(MRInstance == undefined) {
+      let AIXInstance = geAIXToken();
+      if(AIXInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let mrBalance = await MRInstance.methods
+      let aixBalance = await AIXInstance.methods
         .balanceOf(address)
         .call();
-      return mrBalance
+      return aixBalance
     } catch (error) {
       
     }
@@ -337,15 +337,15 @@ const withDrawMR = async (balance: string) => {
 
   return {
     approveToken,
-    depositMR,
-    withDrawMR,
-    approveTokenMR,
-    checkAllowanceMR,
+    depositAIX,
+    withDrawAIX,
+    approveTokenAIX,
+    checkAllowanceAIX,
     checkReward,
-    checkBalanceMS,
-    checkBalanceMR,
+    checkBalanceAIXT,
+    checkBalanceAIX,
     checkUserInfo,
-    buyMR
+    buyAIX
   };
 };
 
