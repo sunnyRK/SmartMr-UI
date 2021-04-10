@@ -5,9 +5,9 @@ import { Modal } from "react-responsive-modal";
 
 // import CustomButton from "./CustomButton";
 import SmallButtons from "./SmallButtons";
-import useContracts from "../hooks/useContracts";
+import useContracts from "../../hooks/useContracts";
 import ApproveButton from "./ApproveButton";
-import { useStoreState } from "../store/globalStore";
+import { useStoreState } from "../../store/globalStore";
 import Swal from "sweetalert2";
 import ConnectWeb3 from "./ConnectWeb3";
 
@@ -57,7 +57,7 @@ theme.typography.h3 = {
   },
 };
 
-const GasModal: React.FunctionComponent = () => {
+const Main: React.FunctionComponent = () => {
 
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:600px)');
@@ -352,4 +352,4 @@ const GasModal: React.FunctionComponent = () => {
   ));
 };
 
-export default GasModal;
+export default Main;
