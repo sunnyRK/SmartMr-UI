@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import "./App.css";
 
 import globalStore, { IGlobalStore } from "./store/globalStore";
@@ -13,6 +14,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
 import Main2 from "../src/components/Chinees/Main";
 import Main from "../src/components/English/Main";
 import { Grid } from "@material-ui/core";
@@ -64,7 +66,6 @@ function App() {
           
           <Switch>
             <Route exact path="/">
-              {/* <Main2 /> */}
               <div className="App">
                 <div className="main-card">
                   <InfoHeader2 />
@@ -75,7 +76,6 @@ function App() {
               </div>
             </Route>
             <Route path="/chinees">
-              {/* <Main2 /> */}
               <div className="App">
                 <div className="main-card">
                   <InfoHeader2 />
@@ -86,7 +86,6 @@ function App() {
               </div>
             </Route>
             <Route path="/english">
-              {/* <Main /> */}
               <div className="App">
                 <div className="main-card">
                   <InfoHeader />
