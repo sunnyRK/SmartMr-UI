@@ -248,7 +248,7 @@ const withDrawAIX = async (balance: string) => {
     }
   };
 
-  const checkReward = async () => {
+  const checkTotalReward = async () => {
     try {
       let SmartMrInstance = getSmartMr();
       if(SmartMrInstance == undefined) {
@@ -258,12 +258,112 @@ const withDrawAIX = async (balance: string) => {
       let rewards = await SmartMrInstance.methods
         .viewReward(account)
         .call();
-      console.log('rewards: ', rewards)
+      console.log('checkTotalReward: ', rewards)
       let reward: any = 0
       for (let i=0;i<3;i++) {
         reward = reward + parseInt(rewards[i])
       }
       return reward
+    } catch (error) {
+      console.log(error)
+    } 
+  };
+
+  const checkViewStaticReward = async () => {
+    try {
+      let SmartMrInstance = getSmartMr();
+      if(SmartMrInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+      let rewards = await SmartMrInstance.methods
+        .viewStaicReward(account)
+        .call();
+      console.log('checkViewStaticReward: ', rewards)
+      // let reward: any = 0
+      // for (let i=0;i<3;i++) {
+      //   reward = reward + parseInt(rewards[i])
+      // }
+
+      if(parseInt(rewards) > 0) {
+        return rewards
+      } else {
+        return 0
+      }
+    } catch (error) {
+      console.log(error)
+    } 
+  };
+
+  const checkViewGreatReward = async () => {
+    try {
+      let SmartMrInstance = getSmartMr();
+      if(SmartMrInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+      let rewards = await SmartMrInstance.methods
+        .viewGreatReward(account)
+        .call();
+      console.log('checkViewGreatReward: ', rewards)
+      // let reward: any = 0
+      // for (let i=0;i<3;i++) {
+      //   reward = reward + parseInt(rewards[i])
+      // }
+      if(parseInt(rewards) > 0) {
+        return rewards
+      } else {
+        return 0
+      }
+    } catch (error) {
+      console.log(error)
+    } 
+  };
+
+  const checkViewTeamReward = async () => {
+    try {
+      let SmartMrInstance = getSmartMr();
+      if(SmartMrInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+
+      const teamReward = await checkUserInfo();
+      let rewards = await SmartMrInstance.methods
+        .backReward(account)
+        .call();
+      console.log('checkViewTeamReward: ', rewards)
+      let reward: any = parseInt(teamReward) + parseInt(rewards)
+      // return reward
+      
+      if(parseInt(rewards) > 0) {
+        return rewards
+      } else {
+        return 0
+      }
+    } catch (error) {
+      console.log(error)
+    } 
+  };
+
+  const checkTotalDeposit = async () => {
+    try {
+      let SmartMrInstance = getSmartMr();
+      if(SmartMrInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+
+      let totalDeposit = await SmartMrInstance.methods
+        .totalDeposit()
+        .call();
+      console.log('totalDeposit: ', totalDeposit)
+      
+      if(parseInt(totalDeposit) > 0) {
+        return totalDeposit
+      } else {
+        return 0
+      }
     } catch (error) {
       console.log(error)
     } 
@@ -341,11 +441,16 @@ const withDrawAIX = async (balance: string) => {
     withDrawAIX,
     approveTokenAIX,
     checkAllowanceAIX,
-    checkReward,
+    checkTotalReward,
     checkBalanceAIXT,
     checkBalanceAIX,
     checkUserInfo,
-    buyAIX
+    buyAIX,
+    checkViewTeamReward,
+    checkViewGreatReward,
+    checkViewStaticReward,
+    checkTotalDeposit
+    
   };
 };
 

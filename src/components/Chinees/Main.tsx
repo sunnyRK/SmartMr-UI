@@ -20,7 +20,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-
+import { BigNumber } from "bignumber.js";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,10 +63,24 @@ const Main2: React.FunctionComponent = () => {
   const matches = useMediaQuery('(min-width:600px)');
 
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceAIX, approveTokenAIX, depositAIX, withDrawAIX, checkReward, checkBalanceAIX, checkBalanceAIXT, approveToken, buyAIX, checkUserInfo } = useContracts();
+  const { checkAllowanceAIX, approveTokenAIX, depositAIX, withDrawAIX, 
+    checkTotalReward, checkBalanceAIX, checkBalanceAIXT, approveToken, 
+    buyAIX, checkUserInfo, checkViewGreatReward, checkViewStaticReward, checkViewTeamReward,
+    checkTotalDeposit } = useContracts();
 
   const [open, setOpen] = useState(false);
   const [claimableReward, setReward] = useState('0');
+  const [claimableTeamReward, setTeamReward] = useState('0');
+  const [claimableStaticReward, setStaticReward] = useState('0');
+  const [claimableGreatReward, setGreatReward] = useState('0');
+
+  const [claimableTeamRewardPercent, setTeamRewardPercent] = useState('0');
+  const [claimableStaticRewardPercent, setStaticRewardPercent] = useState('0');
+  const [claimableGreatRewardPercent, setGreatRewardPercent] = useState('0');
+
+  const [totalDeposit, setTotalDeposit] = useState('0');
+  const [teamStackingAIX, setTeamStackingAIX] = useState('0');
+
   const [aixtBalance, setAIXTBalance] = useState('0');
   const [aixBalance, setAIXBalance] = useState('0');
   const [aixDepositAmount, setDepositAmount] = useState('0');
@@ -74,6 +88,7 @@ const Main2: React.FunctionComponent = () => {
   const [aixBuyAmount, setBuyAIXAmount] = useState('0');
   const [invitorAddress, setInvitorAddress] = useState('');
   const [userInfo, setUserInfo] = useState([]);
+
 
   const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
     "USDC"
@@ -103,16 +118,34 @@ const Main2: React.FunctionComponent = () => {
 
   const checkRewardOfClaim = async () => {
     try {
-      const reward = await checkReward();
+      const reward = await checkTotalReward();
+      const staticReward = await checkViewStaticReward();
+      const greatReward = await checkViewGreatReward();
+      const teamReward = await checkViewTeamReward();
       const aixBal = await checkBalanceAIX();
       const aixtBal = await checkBalanceAIXT();
-      setReward(reward);
+      const _totalDeposit = await checkTotalDeposit()
+      setReward(reward)
+      setStaticReward(staticReward)
+      setGreatReward(greatReward)
+      setTeamReward(teamReward)
       setAIXBalance(aixBal)
       setAIXTBalance(aixtBal)
+      setTotalDeposit(_totalDeposit)
+
+      const staticPercent = new BigNumber(staticReward).multipliedBy(100).div(new BigNumber(reward))
+      const greatPercent = new BigNumber(greatReward).multipliedBy(100).div(new BigNumber(reward))
+      const teamPercent = new BigNumber(teamReward).multipliedBy(100).div(new BigNumber(reward))
+
+      setStaticRewardPercent(staticPercent.toString())
+      setGreatRewardPercent(greatPercent.toString())
+      setTeamRewardPercent(teamPercent.toString())
+
     } catch (error) {
       console.log('checkRewardOfClaim-error', error)
     }
   }
+
 
   const handleDepositAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDepositAmount(event.target.value);
@@ -152,6 +185,40 @@ const Main2: React.FunctionComponent = () => {
                   <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>質押礦池</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT ({parseFloat(claimableStaticRewardPercent)}%)</Typography>
+                </ThemeProvider>
+              </div>
+ 
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>節點礦池</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT ({parseFloat(claimableTeamRewardPercent)}%)</Typography>
+                </ThemeProvider>
+              </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>伟大的</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableGreatReward)/1e18} AIXT ({parseFloat(claimableGreatRewardPercent)}%)</Typography>
+                </ThemeProvider>
+              </div>
+
             </Paper>
           </Grid>
           <Grid item xs={12}>
@@ -184,14 +251,36 @@ const Main2: React.FunctionComponent = () => {
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
+            <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>AIX全網質押總量</Typography>
+                </ThemeProvider> 
+              </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您錢包里的AIX餘額</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
+                </ThemeProvider>
+              </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您質押的AIX</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
                   <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
+                </ThemeProvider>
+              </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>您的節點質押總量</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
