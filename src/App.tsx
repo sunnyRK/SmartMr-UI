@@ -83,7 +83,7 @@ function App() {
                 <div className="main-card">
                   <InfoHeader2 />
                   <div className="body">
-                    <Main2 /> 
+                    <Main2 /> {/* Chinese */}
                   </div>
                 </div>
               </div>
@@ -93,7 +93,7 @@ function App() {
                 <div className="main-card">
                   <InfoHeader />
                   <div className="body">
-                    <Main /> 
+                    <Main /> {/* English */}
                   </div>
                 </div>
               </div>

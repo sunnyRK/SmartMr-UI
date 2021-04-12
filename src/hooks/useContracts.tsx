@@ -280,11 +280,6 @@ const withDrawAIX = async (balance: string) => {
         .viewStaicReward(account)
         .call();
       console.log('checkViewStaticReward: ', rewards)
-      // let reward: any = 0
-      // for (let i=0;i<3;i++) {
-      //   reward = reward + parseInt(rewards[i])
-      // }
-
       if(parseInt(rewards) > 0) {
         return rewards
       } else {
@@ -295,7 +290,7 @@ const withDrawAIX = async (balance: string) => {
     } 
   };
 
-  const checkViewGreatReward = async () => {
+  const checkInvitorReward = async () => {
     try {
       let SmartMrInstance = getSmartMr();
       if(SmartMrInstance == undefined) {
@@ -303,13 +298,9 @@ const withDrawAIX = async (balance: string) => {
         return
       }
       let rewards = await SmartMrInstance.methods
-        .viewGreatReward(account)
+        .backReward(account)
         .call();
-      console.log('checkViewGreatReward: ', rewards)
-      // let reward: any = 0
-      // for (let i=0;i<3;i++) {
-      //   reward = reward + parseInt(rewards[i])
-      // }
+      console.log('checkInvitorReward: ', rewards)
       if(parseInt(rewards) > 0) {
         return rewards
       } else {
@@ -327,15 +318,12 @@ const withDrawAIX = async (balance: string) => {
         alert("Please Connect Metamask")
         return
       }
-
       const teamReward = await checkUserInfo();
       let rewards = await SmartMrInstance.methods
-        .backReward(account)
+        .viewGreatReward(account)
         .call();
       console.log('checkViewTeamReward: ', rewards)
-      let reward: any = parseInt(teamReward) + parseInt(rewards)
-      // return reward
-      
+      let reward: any = parseInt(teamReward) + parseInt(rewards)      
       if(parseInt(rewards) > 0) {
         return rewards
       } else {
@@ -358,7 +346,6 @@ const withDrawAIX = async (balance: string) => {
         .totalDeposit()
         .call();
       console.log('totalDeposit: ', totalDeposit)
-      
       if(parseInt(totalDeposit) > 0) {
         return totalDeposit
       } else {
@@ -447,7 +434,7 @@ const withDrawAIX = async (balance: string) => {
     checkUserInfo,
     buyAIX,
     checkViewTeamReward,
-    checkViewGreatReward,
+    checkInvitorReward,
     checkViewStaticReward,
     checkTotalDeposit
     

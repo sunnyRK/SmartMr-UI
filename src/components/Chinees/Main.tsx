@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-modal/styles.css";
 
-import { Modal } from "react-responsive-modal";
-
-// import CustomButton from "./CustomButton";
-import SmallButtons from "./SmallButtons";
 import useContracts from "../../hooks/useContracts";
-import ApproveButton from "./ApproveButton";
 import { useStoreState } from "../../store/globalStore";
-import Swal from "sweetalert2";
 import ConnectWeb3 from "./ConnectWeb3";
 
 import Grid from '@material-ui/core/Grid';
@@ -43,8 +37,6 @@ const useStyles2 = makeStyles((theme) => ({
   },
 }));
 
-
-
 const theme = createMuiTheme();
 
 theme.typography.h3 = {
@@ -57,29 +49,27 @@ theme.typography.h3 = {
   },
 };
 
-const Main2: React.FunctionComponent = () => {
+const MainChinese: React.FunctionComponent = () => {
 
   const classes = useStyles();
-  const matches = useMediaQuery('(min-width:600px)');
 
   const { connected } = useStoreState((state) => state);
-  const { checkAllowanceAIX, approveTokenAIX, depositAIX, withDrawAIX, 
+  const { approveTokenAIX, depositAIX, withDrawAIX, 
     checkTotalReward, checkBalanceAIX, checkBalanceAIXT, approveToken, 
-    buyAIX, checkUserInfo, checkViewGreatReward, checkViewStaticReward, checkViewTeamReward,
+    buyAIX, checkUserInfo, checkInvitorReward, checkViewStaticReward, checkViewTeamReward,
     checkTotalDeposit } = useContracts();
 
   const [open, setOpen] = useState(false);
   const [claimableReward, setReward] = useState('0');
   const [claimableTeamReward, setTeamReward] = useState('0');
   const [claimableStaticReward, setStaticReward] = useState('0');
-  const [claimableGreatReward, setGreatReward] = useState('0');
+  const [claimableInvitorReward, setInvitorReward] = useState('0');
 
   const [claimableTeamRewardPercent, setTeamRewardPercent] = useState('0');
   const [claimableStaticRewardPercent, setStaticRewardPercent] = useState('0');
-  const [claimableGreatRewardPercent, setGreatRewardPercent] = useState('0');
+  const [claimableInvitorRewardPercent, setInvitorRewardPercent] = useState('0');
 
   const [totalDeposit, setTotalDeposit] = useState('0');
-  const [teamStackingAIX, setTeamStackingAIX] = useState('0');
 
   const [aixtBalance, setAIXTBalance] = useState('0');
   const [aixBalance, setAIXBalance] = useState('0');
@@ -88,14 +78,6 @@ const Main2: React.FunctionComponent = () => {
   const [aixBuyAmount, setBuyAIXAmount] = useState('0');
   const [invitorAddress, setInvitorAddress] = useState('');
   const [userInfo, setUserInfo] = useState([]);
-
-
-  const [selectedToken, setSelectedToken] = useState<"DAI" | "USDC" | "USDT">(
-    "USDC"
-  );
-
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => setOpen(false);
 
   useEffect(() => {
     async function process() {
@@ -120,32 +102,31 @@ const Main2: React.FunctionComponent = () => {
     try {
       const reward = await checkTotalReward();
       const staticReward = await checkViewStaticReward();
-      const greatReward = await checkViewGreatReward();
+      const invitorReward = await checkInvitorReward();
       const teamReward = await checkViewTeamReward();
       const aixBal = await checkBalanceAIX();
       const aixtBal = await checkBalanceAIXT();
       const _totalDeposit = await checkTotalDeposit()
       setReward(reward)
       setStaticReward(staticReward)
-      setGreatReward(greatReward)
+      setInvitorReward(invitorReward)
       setTeamReward(teamReward)
       setAIXBalance(aixBal)
       setAIXTBalance(aixtBal)
       setTotalDeposit(_totalDeposit)
 
       const staticPercent = new BigNumber(staticReward).multipliedBy(100).div(new BigNumber(reward))
-      const greatPercent = new BigNumber(greatReward).multipliedBy(100).div(new BigNumber(reward))
+      const invitorPercent = new BigNumber(invitorReward).multipliedBy(100).div(new BigNumber(reward))
       const teamPercent = new BigNumber(teamReward).multipliedBy(100).div(new BigNumber(reward))
 
       setStaticRewardPercent(staticPercent.toString())
-      setGreatRewardPercent(greatPercent.toString())
+      setInvitorRewardPercent(invitorPercent.toString())
       setTeamRewardPercent(teamPercent.toString())
 
     } catch (error) {
       console.log('checkRewardOfClaim-error', error)
     }
   }
-
 
   const handleDepositAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDepositAmount(event.target.value);
@@ -210,12 +191,12 @@ const Main2: React.FunctionComponent = () => {
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>伟大的</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>推薦礦池</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableGreatReward)/1e18} AIXT ({parseFloat(claimableGreatRewardPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT ({parseFloat(claimableInvitorRewardPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
 
@@ -244,7 +225,7 @@ const Main2: React.FunctionComponent = () => {
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -269,7 +250,7 @@ const Main2: React.FunctionComponent = () => {
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
 
@@ -441,4 +422,4 @@ const Main2: React.FunctionComponent = () => {
   ));
 };
 
-export default Main2;
+export default MainChinese;
