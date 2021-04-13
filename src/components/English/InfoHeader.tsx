@@ -56,8 +56,8 @@ const InfoHeader: React.FunctionComponent = () => {
       <div className="title">
         {/* <img src={logo} style={{width: "30%", height: "30%", marginBottom:"0.1%"}}></img> */}
         <Avatar alt="Remy Sharp" src={logo} className={classes.large} 
-          style={{width: "20%", height: "20%", padding: "20px", marginBottom:"0.2%", borderStyle: 'LightGray', backgroundColor: "LightGray"}} />
-      </div>
+          style={{width: "10%", height: "2%", padding: "20px", marginBottom:"1%", borderStyle: 'LightGray', backgroundColor: "LightGray"}} />
+          </div>
       <div className="wallet-address">
         {/* {account ? `(${network}) ${account}` : "connect wallet to continue"} */}
         <ThemeProvider theme={theme}>
