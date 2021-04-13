@@ -40,7 +40,7 @@ const useStyles2 = makeStyles((theme) => ({
 const theme = createMuiTheme();
 
 theme.typography.h3 = {
-  fontSize: '1.2rem',
+  fontSize: '1rem',
   '@media (min-width:600px)': {
     fontSize: '1.5rem',
   },
@@ -159,34 +159,34 @@ const MainChinese: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
             <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>AIX全網質押總量</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>AIX全網質押總量</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>您質押的AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>您質押的AIX</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX  ({parseFloat(stackedStaticPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(userInfo[0])/1e18} AIX  ({parseFloat(stackedStaticPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>您的節點質押總量</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>您的節點質押總量</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX  ({parseFloat(stackedTeamPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(userInfo[5])/1e18} AIX  ({parseFloat(stackedTeamPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -195,45 +195,45 @@ const MainChinese: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>已經獲得AIXT挖礦收益</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>已經獲得AIXT挖礦收益</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(claimableReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>質押礦池</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>質押礦池</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
  
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>節點礦池</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>節點礦池</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>推薦礦池</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>推薦礦池</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
 
@@ -243,12 +243,12 @@ const MainChinese: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>您錢包里的AIXT餘額</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>您錢包里的AIXT餘額</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixtBalance)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(aixtBalance)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -257,12 +257,12 @@ const MainChinese: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>您所質押的AIX餘額</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>您所質押的AIX餘額</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -272,7 +272,7 @@ const MainChinese: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>質押AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>質押AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">質押AIX來獲得AIXT</Typography>
@@ -341,7 +341,7 @@ const MainChinese: React.FunctionComponent = () => {
               <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>解除質押AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>解除質押AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">解除質押AIX並且提取所獲得的AIXT</Typography>
@@ -376,7 +376,7 @@ const MainChinese: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>購買AIX代幣</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>購買AIX代幣</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">使用USDT購買AIX代幣</Typography>
