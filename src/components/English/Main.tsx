@@ -154,6 +154,42 @@ const MainEnglish: React.FunctionComponent = () => {
     <>
       <div>
         <Grid container spacing={3} >
+        <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Total AIX Stacking</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
+                </ThemeProvider>
+              </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your AIX Stacking</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX ({parseFloat(stackedStaticPercent)}%)</Typography>
+                </ThemeProvider>
+              </div>
+
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your Team AIX Stacking</Typography>
+                </ThemeProvider> 
+              </div>
+              <div className="checking-allowance">
+                <ThemeProvider theme={theme}>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX ({parseFloat(stackedTeamPercent)}%)</Typography>
+                </ThemeProvider>
+              </div>
+            </Paper>
+          </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
@@ -225,42 +261,6 @@ const MainEnglish: React.FunctionComponent = () => {
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
                   <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
-                </ThemeProvider>
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Total AIX Stacking</Typography>
-                </ThemeProvider> 
-              </div>
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
-                </ThemeProvider>
-              </div>
-
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your AIX Stacking</Typography>
-                </ThemeProvider> 
-              </div>
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX ({parseFloat(stackedStaticPercent)}%)</Typography>
-                </ThemeProvider>
-              </div>
-
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your Team AIX Stacking</Typography>
-                </ThemeProvider> 
-              </div>
-              <div className="checking-allowance">
-                <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX ({parseFloat(stackedTeamPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
