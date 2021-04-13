@@ -152,7 +152,6 @@ const MainEnglish: React.FunctionComponent = () => {
       </div>
       ) : (
     <>
-    <Container>
       <div>
         <Grid container spacing={3} >
           <Grid item xs={12}>
@@ -417,7 +416,6 @@ const MainEnglish: React.FunctionComponent = () => {
           </Grid>
         </Grid>
       </div>
-      </Container>
     </>
   ));
 };

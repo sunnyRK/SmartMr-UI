@@ -19,6 +19,7 @@ body {
   padding: 0;
   margin: 0;
   background: var(--pastel-off-white);
+  margin-top: 35px;
 }
 
 body,
@@ -241,7 +242,7 @@ p {
   font-size: 0.8rem;
   color: var(--pastel-off-white);
   background: var(--pastel-blue2);
-  border-radius: 1rem;
+  border-radius: 0.6rem;
   text-align: center;
   cursor: pointer;
 }
