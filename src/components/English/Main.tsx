@@ -65,9 +65,9 @@ const MainEnglish: React.FunctionComponent = () => {
   const [claimableStaticReward, setStaticReward] = useState('0');
   const [claimableInvitorReward, setInvitorReward] = useState('0');
 
-  const [claimableTeamRewardPercent, setTeamRewardPercent] = useState('0');
-  const [claimableStaticRewardPercent, setStaticRewardPercent] = useState('0');
-  const [claimableInvitorRewardPercent, setInvitorRewardPercent] = useState('0');
+  const [stackedTeamPercent, setTeamPercent] = useState('0');
+  const [stackedStaticPercent, setStaticPercent] = useState('0');
+  const [stackedInvitorPercent, setInvitorPercent] = useState('0');
 
   const [totalDeposit, setTotalDeposit] = useState('0');
 
@@ -83,12 +83,6 @@ const MainEnglish: React.FunctionComponent = () => {
     async function process() {
       try {
         await checkRewardOfClaim()
-        const userInfoDetails: any = await checkUserInfo()
-        console.log('userInfoDetails: ', userInfoDetails, parseFloat(userInfoDetails[0])/1e18)
-        setUserInfo(userInfoDetails)
-        if(userInfoDetails[2] != '0x0000000000000000000000000000000000000000') {
-          setInvitorAddress(userInfoDetails[2]);
-        }
       } catch (error) {
         console.log(error)
       }
@@ -107,6 +101,9 @@ const MainEnglish: React.FunctionComponent = () => {
       const aixBal = await checkBalanceAIX();
       const aixtBal = await checkBalanceAIXT();
       const _totalDeposit = await checkTotalDeposit()
+      const userInfoDetails: any = await checkUserInfo()
+      console.log('userInfoDetails: ', userInfoDetails, parseFloat(userInfoDetails[0])/1e18)
+
       setReward(reward)
       setStaticReward(staticReward)
       setInvitorReward(invitorReward)
@@ -114,14 +111,18 @@ const MainEnglish: React.FunctionComponent = () => {
       setAIXBalance(aixBal)
       setAIXTBalance(aixtBal)
       setTotalDeposit(_totalDeposit)
+      setUserInfo(userInfoDetails)
+      if(userInfoDetails[2] != '0x0000000000000000000000000000000000000000') {
+        setInvitorAddress(userInfoDetails[2]);
+      }
 
-      const staticPercent = new BigNumber(staticReward).multipliedBy(100).div(new BigNumber(reward))
-      const invitorPercent = new BigNumber(invitorReward).multipliedBy(100).div(new BigNumber(reward))
-      const teamPercent = new BigNumber(teamReward).multipliedBy(100).div(new BigNumber(reward))
+      const staticPercent = new BigNumber(userInfoDetails[0]).multipliedBy(100).div(new BigNumber(_totalDeposit))
+      // const invitorPercent = new BigNumber(invitorReward).multipliedBy(100).div(new BigNumber(_totalDeposit))
+      const teamPercent = new BigNumber(userInfoDetails[5]).multipliedBy(100).div(new BigNumber(_totalDeposit))
 
-      setStaticRewardPercent(staticPercent.toString())
-      setInvitorRewardPercent(invitorPercent.toString())
-      setTeamRewardPercent(teamPercent.toString())
+      setStaticPercent(staticPercent.toString())
+      // setInvitorPercent(invitorPercent.toString())
+      setTeamPercent(teamPercent.toString())
 
     } catch (error) {
       console.log('checkRewardOfClaim-error', error)
@@ -158,7 +159,7 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Claimable AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -169,44 +170,43 @@ const MainEnglish: React.FunctionComponent = () => {
               
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable Static AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Claimable Static AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT ({parseFloat(claimableStaticRewardPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
  
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable Team AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Claimable Team AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT ({parseFloat(claimableTeamRewardPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Claimable Invitor AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Claimable Invitor AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT ({parseFloat(claimableInvitorRewardPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
-
             </Paper>
           </Grid>
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your current AIXT Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your current AIXT Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -220,7 +220,7 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your Stacked AIX Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your AIX Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -234,7 +234,7 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Total AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Total AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
@@ -245,23 +245,23 @@ const MainEnglish: React.FunctionComponent = () => {
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[0])/1e18} AIX ({parseFloat(stackedStaticPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Your Team AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Your Team AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '1.2rem'}}>{parseFloat(userInfo[5])/1e18} AIX ({parseFloat(stackedTeamPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -271,7 +271,7 @@ const MainEnglish: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Deposit AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Deposit AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Stake AIX token to earn AIXT token</Typography>
@@ -340,7 +340,7 @@ const MainEnglish: React.FunctionComponent = () => {
               <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Withdraw AIX</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Withdraw AIX</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Withdraw AIX token and harvest all earned AIXT token</Typography>
@@ -375,7 +375,7 @@ const MainEnglish: React.FunctionComponent = () => {
             <Grid container spacing={3}>
               <Grid item xs={12}>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1.2rem'}}>Marketplace of AIX token</Typography>
+                  <Typography variant="h3" style={{fontSize: '1.2rem', color: "#000000"}}>Marketplace of AIX token</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
                   <Typography variant="subtitle1">Buy AIX token by depositing USDT token</Typography>

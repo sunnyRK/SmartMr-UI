@@ -71,9 +71,9 @@ function App() {
             <Route exact path="/">
               <div className="App">
                 <div className="main-card">
-                  <InfoHeader2 />
                   <div className="body">
-                    <Main2 /> 
+                      <InfoHeader2 />
+                      <Main2 /> 
                   </div>
                 </div>
               </div>
@@ -81,8 +81,8 @@ function App() {
             <Route path="/chinees">
               <div className="App">
                 <div className="main-card">
-                  <InfoHeader2 />
                   <div className="body">
+                    <InfoHeader2 />
                     <Main2 /> {/* Chinese */}
                   </div>
                 </div>

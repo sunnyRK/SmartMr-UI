@@ -35,10 +35,10 @@ const InfoHeader: React.FunctionComponent = () => {
       <div className="wallet-address">
         {/* {account ? `(${network}) ${account}` : "connect wallet to continue"} */}
         <ThemeProvider theme={theme}>
-          <Typography variant="caption" style={{fontSize: '0.6rem'}}>
+          <Typography variant="h3" style={{fontSize: '0.6rem'}}>
             {account ? `(${network}) ${account}` : "connect wallet to continue"}
           </Typography>
-        </ThemeProvider> 
+        </ThemeProvider>
       </div>
       
       <Grid container spacing={3} style={{marginLeft:"70%"}}>    
