@@ -61,8 +61,8 @@ const InfoHeader: React.FunctionComponent = () => {
       <div className="wallet-address">
         {/* {account ? `(${network}) ${account}` : "connect wallet to continue"} */}
         <ThemeProvider theme={theme}>
-          <Typography variant="h3" style={{fontSize: '1rem', color: "#6C79D3"}}>
-            {account ? `(${network}) ${account}` : "connect wallet to continue"}
+          <Typography variant="h3"  style={{fontSize: '0.6rem', color: "#6C79D3"}}>
+            {account ? `(${network}) ${account}` : "連接錢包進行下一步"}
           </Typography>
         </ThemeProvider>
       </div>
