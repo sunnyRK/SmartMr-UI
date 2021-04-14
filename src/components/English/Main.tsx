@@ -158,34 +158,34 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Total AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Total AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(totalDeposit)/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Your AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Your AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(userInfo[0])/1e18} AIX ({parseFloat(stackedStaticPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(userInfo[0])/1e18} AIX ({parseFloat(stackedStaticPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Your Team AIX Stacking</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Your Team AIX Stacking</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(userInfo[5])/1e18} AIX ({parseFloat(stackedTeamPercent)}%)</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(userInfo[5])/1e18} AIX ({parseFloat(stackedTeamPercent)}%)</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -195,45 +195,45 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Claimable AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Claimable AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(claimableReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(claimableReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
               
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Claimable Static AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Claimable Static AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(claimableStaticReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(claimableStaticReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
  
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Claimable Team AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Claimable Team AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(claimableTeamReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(claimableTeamReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
 
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Claimable Invitor AIXT Reward</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Claimable Invitor AIXT Reward</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(claimableInvitorReward)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(claimableInvitorReward)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -242,12 +242,12 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Your current AIXT Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Your current AIXT Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(aixtBalance)/1e18} AIXT</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(aixtBalance)/1e18} AIXT</Typography>
                 </ThemeProvider>
               </div>
             </Paper>
@@ -256,12 +256,12 @@ const MainEnglish: React.FunctionComponent = () => {
             <Paper className={classes.paper}>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Your AIX Balance</Typography>
+                  <Typography variant="h3" style={{fontSize: '1rem', color: "#000000", textAlign: "left"}}>Your AIX Balance</Typography>
                 </ThemeProvider> 
               </div>
               <div className="checking-allowance">
                 <ThemeProvider theme={theme}>
-                  <Typography variant="h5" style={{fontSize: '0.9rem'}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
+                  <Typography variant="h5" style={{fontSize: '0.9rem', textAlign: "left"}}>{parseFloat(aixBalance)/1e18} AIX</Typography>
                 </ThemeProvider>
               </div>
             </Paper>

@@ -56,12 +56,12 @@ const InfoHeader: React.FunctionComponent = () => {
       <div className="title">
         {/* <img src={logo} style={{width: "30%", height: "30%", marginBottom:"0.1%"}}></img> */}
         <Avatar alt="Remy Sharp" src={logo} className={classes.large} 
-          style={{width: "10%", height: "2%", padding: "20px", marginBottom:"1%", borderStyle: 'LightGray', backgroundColor: "LightGray"}} />
+          style={{width: "30%", height: "6%", padding: "20px", marginBottom:"1%"}} />
           </div>
       <div className="wallet-address">
         {/* {account ? `(${network}) ${account}` : "connect wallet to continue"} */}
         <ThemeProvider theme={theme}>
-          <Typography variant="h3" style={{fontSize: '0.6rem', color: "#6C79D3"}}>
+          <Typography variant="h3" style={{fontSize: '0.6rem', color: "#6C79D3", marginBottom:"1%"}}>
             {account ? `(${network}) ${account}` : "connect wallet to continue"}
           </Typography>
         </ThemeProvider>
