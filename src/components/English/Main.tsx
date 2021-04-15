@@ -80,7 +80,7 @@ const MainEnglish: React.FunctionComponent = () => {
   const [aixWithdrawAmount, setWithdrawAmount] = useState('0');
   const [aixBuyAmount, setBuyAIXAmount] = useState('0');
   const [aixSellAmount, setSellAIXAmount] = useState('0');
-  const [invitorAddress, setInvitorAddress] = useState('');
+  const [invitorAddress, setInvitorAddress] = useState('0');
   const [userInfo, setUserInfo] = useState([]);
 
   useEffect(() => {
