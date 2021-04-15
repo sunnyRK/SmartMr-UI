@@ -1,16 +1,11 @@
 {
-    "address": "0xB22c9d534C5EbA2E4A3c3f7B2a06f9AF72223113",
+    "address": "0x429d07dD1E293709Aa268FB6BA7b57eC65ec665f",
     "abi": [
         {
             "inputs": [
                 {
-                    "internalType": "address",
-                    "name": "_to",
-                    "type": "address"
-                },
-                {
                     "internalType": "uint256",
-                    "name": "_amount",
+                    "name": "_maxTotalSupply",
                     "type": "uint256"
                 }
             ],
@@ -40,6 +35,25 @@
                 }
             ],
             "name": "Approval",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "previousOwner",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "OwnershipTransferred",
             "type": "event"
         },
         {
@@ -197,6 +211,37 @@
         },
         {
             "inputs": [],
+            "name": "maxTotalSupply",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "mint",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
             "name": "name",
             "outputs": [
                 {
@@ -206,6 +251,26 @@
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -284,6 +349,19 @@
                     "type": "bool"
                 }
             ],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "newOwner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnership",
+            "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
         }

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-modal/styles.css";
 
+import buy_aix_contract from "../../contracts/buy_aix.json";
+import smart_aix_contract from "../../contracts/smartAIX.json";
+
 import useContracts from "../../hooks/useContracts";
 import { useStoreState } from "../../store/globalStore";
 import ConnectWeb3 from "./ConnectWeb3";
@@ -56,7 +59,7 @@ const MainEnglish: React.FunctionComponent = () => {
   const { connected } = useStoreState((state) => state);
   const { approveTokenAIX, depositAIX, withDrawAIX, 
     checkTotalReward, checkBalanceAIX, checkBalanceAIXT, approveToken, 
-    buyAIX, checkUserInfo, checkInvitorReward, checkViewStaticReward, checkViewTeamReward,
+    buyAIX, sellAIX, checkUserInfo, checkInvitorReward, checkViewStaticReward, checkViewTeamReward,
     checkTotalDeposit } = useContracts();
 
   const [open, setOpen] = useState(false);
@@ -76,6 +79,7 @@ const MainEnglish: React.FunctionComponent = () => {
   const [aixDepositAmount, setDepositAmount] = useState('0');
   const [aixWithdrawAmount, setWithdrawAmount] = useState('0');
   const [aixBuyAmount, setBuyAIXAmount] = useState('0');
+  const [aixSellAmount, setSellAIXAmount] = useState('0');
   const [invitorAddress, setInvitorAddress] = useState('');
   const [userInfo, setUserInfo] = useState([]);
 
@@ -143,6 +147,10 @@ const MainEnglish: React.FunctionComponent = () => {
 
   const handleBuyAIXAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
     setBuyAIXAmount(event.target.value);
+  };
+
+  const handleSellAIXAmount = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSellAIXAmount(event.target.value);
   };
 
   return (
@@ -315,7 +323,7 @@ const MainEnglish: React.FunctionComponent = () => {
                 <Grid item xs={6}>
                   <div
                     className="approve-token-button"
-                    onClick={() => approveTokenAIX()}
+                    onClick={() => approveTokenAIX(smart_aix_contract.address)}
                   >
                     <ThemeProvider theme={theme}>
                       <Typography variant="button" display="block" gutterBottom>Approve AIX</Typography>
@@ -378,7 +386,7 @@ const MainEnglish: React.FunctionComponent = () => {
                   <Typography variant="h3" style={{fontSize: '1rem', color: "#000000"}}>Marketplace of AIX token</Typography>
                 </ThemeProvider>
                 <ThemeProvider theme={theme}>
-                  <Typography variant="subtitle1" style={{fontSize: '0.9rem'}}>Buy AIX token by depositing USDT token</Typography>
+                  <Typography variant="subtitle1" style={{fontSize: '0.9rem'}}>Buy and Sell AIX token by depositing USDT and AIX token</Typography>
                 </ThemeProvider>
                 </Grid>
                 <Grid item xs={12}>
@@ -409,6 +417,40 @@ const MainEnglish: React.FunctionComponent = () => {
                   >
                     <ThemeProvider theme={theme}>
                       <Typography variant="button" display="block" gutterBottom>BUY AIX</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+                
+                
+                <Grid item xs={12}>
+                  <TextField 
+                    style={{width: "100%", height: '40px'}} 
+                    id="outlined-search" 
+                    label="Add Buy AIX amount" 
+                    type="search" 
+                    variant="outlined" 
+                    onChange={handleSellAIXAmount}  
+                  />
+                  {/* <input style={{width: "100%", height: '40px'}} onChange={handleBuyAIXAmount} placeholder="Add Buy AIX amount"></input> */}
+                </Grid>
+                
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => approveTokenAIX(buy_aix_contract.address)}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Approve AIX</Typography>
+                    </ThemeProvider> 
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div
+                    className="approve-token-button"
+                    onClick={() => sellAIX(aixSellAmount)}
+                  >
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="button" display="block" gutterBottom>Sell AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>

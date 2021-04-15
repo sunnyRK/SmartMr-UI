@@ -1,6 +1,22 @@
 {
-    "address": "0xB68f23Af3E010FB112e435896A22b7fa938eFBCc",
+    "address": "0xc95E5dC8f836d28aF6bd7EFAeF4377CbA7e508ff",
     "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_aixtToken",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_aixToken",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
         {
             "inputs": [
                 {
@@ -75,199 +91,8 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_amount",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "_invitor",
-                    "type": "address"
-                }
-            ],
-            "name": "depositMR",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "inputs": [],
-            "name": "getReward",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_user",
-                    "type": "address"
-                }
-            ],
-            "name": "getTokenBeforeAudit",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "setAudit",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_user",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_idx",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_value",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "address",
-                    "name": "_invitor",
-                    "type": "address"
-                }
-            ],
-            "name": "setDataBeforeAuditF",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_mrmanage",
-                    "type": "address"
-                }
-            ],
-            "name": "setMrManger",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_starId",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "_newRate",
-                    "type": "uint256"
-                }
-            ],
-            "name": "setNewStarRate",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_perRewardToken",
-                    "type": "uint256"
-                }
-            ],
-            "name": "setPerRewardToken",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_user",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address[]",
-                    "name": "_refArr",
-                    "type": "address[]"
-                }
-            ],
-            "name": "setReffArr",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_owner",
-                    "type": "address"
-                }
-            ],
-            "name": "transferOwnerShip",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "_msToken",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "_mrToken",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
-        {
-            "inputs": [],
-            "name": "updatePerReward",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "userDelegate",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "_amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "withDrawMR",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "backAddr",
+            "name": "aixToken",
             "outputs": [
                 {
                     "internalType": "address",
@@ -279,19 +104,39 @@
             "type": "function"
         },
         {
-            "inputs": [
+            "inputs": [],
+            "name": "aixmanage",
+            "outputs": [
                 {
                     "internalType": "address",
-                    "name": "_user",
+                    "name": "",
                     "type": "address"
                 }
             ],
-            "name": "backReward",
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "aixtToken",
             "outputs": [
                 {
-                    "internalType": "uint256",
+                    "internalType": "address",
                     "name": "",
-                    "type": "uint256"
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "backAddr",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
                 }
             ],
             "stateMutability": "view",
@@ -325,7 +170,7 @@
         },
         {
             "inputs": [],
-            "name": "currentBlockNumber",
+            "name": "curReward",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -338,7 +183,7 @@
         },
         {
             "inputs": [],
-            "name": "curReward",
+            "name": "currentBlockNumber",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -347,6 +192,24 @@
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_invitor",
+                    "type": "address"
+                }
+            ],
+            "name": "depositAIX",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -413,6 +276,25 @@
                     "type": "uint256"
                 }
             ],
+            "name": "getRefRate",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "pure",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "refSec",
+                    "type": "uint256"
+                }
+            ],
             "name": "getReferStaticReward",
             "outputs": [
                 {
@@ -444,22 +326,10 @@
             "type": "function"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "refSec",
-                    "type": "uint256"
-                }
-            ],
-            "name": "getRefRate",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "pure",
+            "inputs": [],
+            "name": "getReward",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -506,6 +376,19 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
+            "name": "getTokenBeforeAudit",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "greatWithdraw",
             "outputs": [
@@ -521,6 +404,25 @@
         {
             "inputs": [],
             "name": "halfDays",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "invitorReward",
             "outputs": [
                 {
                     "internalType": "uint256",
@@ -558,45 +460,6 @@
                     "internalType": "bool",
                     "name": "",
                     "type": "bool"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "mrmanage",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "mrToken",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "msToken",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
                 }
             ],
             "stateMutability": "view",
@@ -720,6 +583,103 @@
         {
             "inputs": [
                 {
+                    "internalType": "address",
+                    "name": "_aixmanage",
+                    "type": "address"
+                }
+            ],
+            "name": "setAixManger",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "setAudit",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_idx",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_value",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_invitor",
+                    "type": "address"
+                }
+            ],
+            "name": "setDataBeforeAuditF",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_starId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_newRate",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setNewStarRate",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_perRewardToken",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setPerRewardToken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address[]",
+                    "name": "_refArr",
+                    "type": "address[]"
+                }
+            ],
+            "name": "setReffArr",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
                     "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
@@ -805,6 +765,19 @@
             "type": "function"
         },
         {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_owner",
+                    "type": "address"
+                }
+            ],
+            "name": "transferOwnerShip",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [],
             "name": "twoWeeks",
             "outputs": [
@@ -815,6 +788,20 @@
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "updatePerReward",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "userDelegate",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -918,6 +905,25 @@
                     "type": "address"
                 }
             ],
+            "name": "viewInvitorReward",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_user",
+                    "type": "address"
+                }
+            ],
             "name": "viewReward",
             "outputs": [
                 {
@@ -975,6 +981,19 @@
                 }
             ],
             "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "withDrawAIX",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         }
     ]

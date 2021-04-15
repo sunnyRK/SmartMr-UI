@@ -1,6 +1,58 @@
 {
-    "address": "0xc8eA8c4775D94C48444fF34d947363c3E457DDdD",
+    "address": "0x970806de4332507AF9aC1B554eD085cEF3C7b354",
     "abi": [
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "buyAIX",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_aixToken",
+                    "type": "address"
+                }
+            ],
+            "name": "changeAIXoken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_usdToken",
+                    "type": "address"
+                }
+            ],
+            "name": "changeUSDoken",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "sellAIX",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
         {
             "inputs": [
                 {
@@ -10,7 +62,12 @@
                 },
                 {
                     "internalType": "address",
-                    "name": "_mrToken",
+                    "name": "_aixToken",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "_devAddr",
                     "type": "address"
                 }
             ],
@@ -37,14 +94,44 @@
             "type": "event"
         },
         {
+            "inputs": [],
+            "name": "renounceOwnership",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
             "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "_devAddr",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_devFee",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setDevAddrAndFees",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "account",
+                    "type": "address"
+                },
                 {
                     "internalType": "uint256",
                     "name": "amount",
                     "type": "uint256"
                 }
             ],
-            "name": "buyMR",
+            "name": "takeAIX",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -53,11 +140,16 @@
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "_mrToken",
+                    "name": "account",
                     "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
                 }
             ],
-            "name": "changeMRoken",
+            "name": "takeUSDT",
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
@@ -66,13 +158,26 @@
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "_usdToken",
+                    "name": "newOwner",
                     "type": "address"
                 }
             ],
-            "name": "changeUSDoken",
+            "name": "transferOwnership",
             "outputs": [],
             "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "aixToken",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -120,12 +225,25 @@
         },
         {
             "inputs": [],
-            "name": "mrToken",
+            "name": "devAddr",
             "outputs": [
                 {
                     "internalType": "address",
                     "name": "",
                     "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "devFee",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",
@@ -142,62 +260,6 @@
                 }
             ],
             "stateMutability": "view",
-            "type": "function"
-        },
-        {
-            "inputs": [],
-            "name": "renounceOwnership",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "account",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "takeMR",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "account",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "amount",
-                    "type": "uint256"
-                }
-            ],
-            "name": "takeUSDT",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "newOwner",
-                    "type": "address"
-                }
-            ],
-            "name": "transferOwnership",
-            "outputs": [],
-            "stateMutability": "nonpayable",
             "type": "function"
         },
         {

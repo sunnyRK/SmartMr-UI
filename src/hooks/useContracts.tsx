@@ -1,4 +1,4 @@
-import smartMr from "../contracts/smartMr.json";
+import smartAix from "../contracts/smartAIX.json";
 import AIXT_KOVAN from "../contracts/AIXT_KOVAN.json";
 import AIX_KOVAN from "../contracts/AIX_KOVAN.json";
 import USDT_kovan_contract from "../contracts/USDT_kovan.json";
@@ -33,11 +33,11 @@ const useContracts = () => {
     }
   };
 
-  const getSmartMr = () => {
+  const getsmartAix = () => {
     try {
       return new web3.eth.Contract(
-        smartMr.abi,
-        smartMr.address
+        smartAix.abi,
+        smartAix.address
       );
     } catch (error) {
       
@@ -109,15 +109,59 @@ const buyAIX = async (balance: string) => {
   }
 };
 
-const depositAIX = async (balance: string, addressInvitor: string) => {
+
+const sellAIX = async (balance: string) => {
   try {
-    console.log('balance', balance, addressInvitor)
-    let SmartMrInstance = getSmartMr();
-    if(SmartMrInstance == undefined) {
+    let buyMrCntract = getBuyMrContract();
+    if(buyMrCntract == undefined) {
       alert("Please Connect Metamask")
       return
     }
-    SmartMrInstance.methods
+
+    if(new BigNumber(balance).toNumber() == 0) {
+      alert("Please add Buy amount")
+      return
+    }
+
+    const usdtBalance = await checkBalanceAIXOfUSDT(buy_aix_contract.address);
+    console.log('usdtBalance++++', usdtBalance  )
+    if(new BigNumber(usdtBalance).gte(new BigNumber(balance).multipliedBy(1e6))) {
+      if(new BigNumber(balance).multipliedBy(1e18).modulo(1e18).eq(0)) {
+        buyMrCntract.methods
+        .sellAIX(new BigNumber(balance).multipliedBy(1e18)) // usdt 1e6
+        .send({
+          from: account,
+        })
+        .on("error", function () {
+          Swal.fire("reverted", "Tx has been cancelled by user", "error");
+        })
+        .on("transactionHash", function (hash: any) {
+          Swal.fire("Success!", "Tx Submitted", "success");
+        })
+        .on("receipt", function (receipt: any) {
+          setShouldUpdate(true);
+        });
+      } else {
+        alert("Amount should not be in fraction.")
+      }
+
+    } else {
+      alert("Not Enough balance in AIX wallet!")
+    }
+  } catch (error) {
+    console.log('depositAIX-Error: ', error)
+  }
+};
+
+const depositAIX = async (balance: string, addressInvitor: string) => {
+  try {
+    console.log('balance', balance, addressInvitor)
+    let smartAixInstance = getsmartAix();
+    if(smartAixInstance == undefined) {
+      alert("Please Connect Metamask")
+      return
+    }
+    smartAixInstance.methods
       .depositAIX(new BigNumber(balance).multipliedBy(1e18), addressInvitor)
       .send({
         from: account,
@@ -139,14 +183,14 @@ const depositAIX = async (balance: string, addressInvitor: string) => {
 
 const withDrawAIX = async (balance: string) => {
   try {
-    let SmartMrInstance = getSmartMr();
+    let smartAixInstance = getsmartAix();
 
-    if(SmartMrInstance == undefined) {
+    if(smartAixInstance == undefined) {
       alert("Please Connect Metamask")
       return
     }
   
-    SmartMrInstance.methods
+    smartAixInstance.methods
       .withDrawAIX(new BigNumber(balance).multipliedBy(1e18))
       .send({
         from: account,
@@ -197,7 +241,7 @@ const withDrawAIX = async (balance: string) => {
     }
   };
 
-  const approveTokenAIX = async () => {
+  const approveTokenAIX = async (spender: string) => {
     try {
       let maxValue =
       "115792089237316195423570985008687907853269984665640564039457584007913129639935";
@@ -210,7 +254,7 @@ const withDrawAIX = async (balance: string) => {
       }
 
       TokenContractInstance.methods
-        .approve(smartMr.address, maxValue)
+        .approve(spender, maxValue)
         .send({
           from: account,
         })
@@ -236,7 +280,7 @@ const withDrawAIX = async (balance: string) => {
         return
       }
       let allowance = await TokenContractInstance.methods
-        .allowance(account, smartMr.address)
+        .allowance(account, smartAix.address)
         .call();
       if (allowance > 0) {
         return true;
@@ -250,12 +294,12 @@ const withDrawAIX = async (balance: string) => {
 
   const checkTotalReward = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let rewards = await SmartMrInstance.methods
+      let rewards = await smartAixInstance.methods
         .viewReward(account)
         .call();
       console.log('checkTotalReward: ', rewards)
@@ -271,12 +315,12 @@ const withDrawAIX = async (balance: string) => {
 
   const checkViewStaticReward = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let rewards = await SmartMrInstance.methods
+      let rewards = await smartAixInstance.methods
         .viewStaicReward(account)
         .call();
       console.log('checkViewStaticReward: ', rewards)
@@ -292,12 +336,12 @@ const withDrawAIX = async (balance: string) => {
 
   const checkInvitorReward = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let rewards = await SmartMrInstance.methods
+      let rewards = await smartAixInstance.methods
         .backReward(account)
         .call();
       console.log('checkInvitorReward: ', rewards)
@@ -313,13 +357,13 @@ const withDrawAIX = async (balance: string) => {
 
   const checkViewTeamReward = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
       const teamReward = await checkUserInfo();
-      let rewards = await SmartMrInstance.methods
+      let rewards = await smartAixInstance.methods
         .viewGreatReward(account)
         .call();
       console.log('checkViewTeamReward: ', rewards)
@@ -336,13 +380,13 @@ const withDrawAIX = async (balance: string) => {
 
   const checkTotalDeposit = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
 
-      let totalDeposit = await SmartMrInstance.methods
+      let totalDeposit = await smartAixInstance.methods
         .totalDeposit()
         .call();
       console.log('totalDeposit: ', totalDeposit)
@@ -358,12 +402,12 @@ const withDrawAIX = async (balance: string) => {
 
   const checkUserInfo = async () => {
     try {
-      let SmartMrInstance = getSmartMr();
-      if(SmartMrInstance == undefined) {
+      let smartAixInstance = getsmartAix();
+      if(smartAixInstance == undefined) {
         alert("Please Connect Metamask")
         return
       }
-      let userInfo = await SmartMrInstance.methods
+      let userInfo = await smartAixInstance.methods
         .userInfo(account)
         .call();
 
@@ -422,6 +466,22 @@ const withDrawAIX = async (balance: string) => {
     }
   };
 
+  const checkBalanceAIXOfUSDT = async (address: string) => {
+    try {
+      let USDTInstance = getContractInstance();
+      if(USDTInstance == undefined) {
+        alert("Please Connect Metamask")
+        return
+      }
+      let aixBalance = await USDTInstance.methods
+        .balanceOf(address)
+        .call();
+      return aixBalance
+    } catch (error) {
+      
+    }
+  };
+
   return {
     approveToken,
     depositAIX,
@@ -433,6 +493,7 @@ const withDrawAIX = async (balance: string) => {
     checkBalanceAIX,
     checkUserInfo,
     buyAIX,
+    sellAIX,
     checkViewTeamReward,
     checkInvitorReward,
     checkViewStaticReward,

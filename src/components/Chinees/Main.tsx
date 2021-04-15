@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "react-responsive-modal/styles.css";
 
+import buy_aix_contract from "../../contracts/buy_aix.json";
+import smart_aix_contract from "../../contracts/smartAIX.json";
+
 import useContracts from "../../hooks/useContracts";
 import { useStoreState } from "../../store/globalStore";
 import ConnectWeb3 from "./ConnectWeb3";
@@ -316,7 +319,7 @@ const MainChinese: React.FunctionComponent = () => {
                 <Grid item xs={6}>
                   <div
                     className="approve-token-button"
-                    onClick={() => approveTokenAIX()}
+                    onClick={() => approveTokenAIX(smart_aix_contract.address)}
                   >
                     <ThemeProvider theme={theme}>
                       <Typography variant="button" display="block" gutterBottom>批准使用AIX</Typography>
