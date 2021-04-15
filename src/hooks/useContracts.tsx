@@ -342,7 +342,7 @@ const withDrawAIX = async (balance: string) => {
         return
       }
       let rewards = await smartAixInstance.methods
-        .backReward(account)
+        .viewInvitorReward(account)
         .call();
       console.log('checkInvitorReward: ', rewards)
       if(parseInt(rewards) > 0) {

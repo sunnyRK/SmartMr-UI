@@ -440,7 +440,7 @@ const MainChinese: React.FunctionComponent = () => {
                     onClick={() => approveTokenAIX(buy_aix_contract.address)}
                   >
                     <ThemeProvider theme={theme}>
-                      <Typography variant="button" display="block" gutterBottom>Approve AIX</Typography>
+                      <Typography variant="button" display="block" gutterBottom>批准 AIX</Typography>
                     </ThemeProvider> 
                   </div>
                 </Grid>
